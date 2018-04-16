@@ -25,16 +25,25 @@ var request = require("request");
 var ssml = require("ssml-builder");
 var response_messages = require("./responses");
 
+var StorePath = '/tmp/PlayList_';
+var PlayListPath = '';
+var PlayListTitles = [];
+var PlayListIndex = 0;
+var CurrentPlayList = '';
+
 // Create Alexa skill application
 var app = new alexa.app("youtube");
 
 // Set Heroku URL
-var heroku = process.env.HEROKU_APP_URL || "https://dmhacker-youtube.herokuapp.com";
+var heroku = process.env.HEROKU_APP_URL || "https://youtube-alexa.herokuapp.com";
 
 // Variables relating to the last video searched
+var metadata = null;
 var last_search = null;
+var is_play_list = false;
 var last_token = null;
 var last_playback = {};
+var lang = "en-US";
 
 // Current song is repeating
 var repeat_infinitely = false;
@@ -72,6 +81,9 @@ function has_video() {
   return last_search != null;
 }
 
+function has_playList() {
+  return is_play_list;
+}
 /**
  * Restarts the video by injecting the last search URL as a new stream.
  *
@@ -95,6 +107,77 @@ function restart_video(res, offset) {
 }
 
 /**
+ * Fill the playlist items into array
+ * @param  {String} PlayListName   The name/number of the playlist (NUMBER)
+ * 
+ * @return {Array} Array of Songs IDs
+ */
+function set_playList_Array(PlayListName){
+  console.log('Read PlayList content');
+  PlayListTitles = [];
+  PlayListPath = StorePath + PlayListName + '.txt';
+  console.log('Playlistpath:', PlayListPath);
+  var fs = require('fs');
+  if (fs.existsSync(PlayListPath)) {
+    PlayListTitles = fs.readFileSync(PlayListPath).toString().split("\n");
+    CurrentPlayList = PlayListName;
+  }
+  return PlayListTitles;
+}
+
+/**
+ * Get the next Title from the current playlist
+ * 
+ * @return {String} Song ID
+ */
+function get_next_title(){
+  PlayListTitles.forEach(function(entry) {
+      console.log('item vor:', entry);
+    });
+    
+  var length = PlayListTitles.length -1; //-1 since the last item is the empty part after \n character.
+  var title = '';
+  PlayListIndex += 1;
+  
+  if (length > PlayListIndex) {
+    title = PlayListTitles[PlayListIndex];
+    console.log('title:', title);
+    console.log('increment');
+  } else {
+    PlayListIndex = 0;
+    title = PlayListTitles[PlayListIndex];
+    console.log('init');
+  }
+  return title;
+}
+
+/**
+ * Get the previous Title from the current playlist
+ * 
+ * @return @return {String} Song ID
+ */
+function get_prev_title(){
+  PlayListTitles.forEach(function(entry) {
+      console.log('item vor:', entry);
+    });
+    
+  var length = PlayListTitles.length -1; //-1 since the last item is the empty part after \n character.
+  var title = '';
+  PlayListIndex -= 1;
+  
+  if (length > PlayListIndex && PlayListIndex >= 0) {
+    title = PlayListTitles[PlayListIndex];
+    console.log('title:', title);
+    console.log('increment');
+  } else {
+    PlayListIndex = length-1;
+    title = PlayListTitles[PlayListIndex];
+    console.log('init');
+  }
+  return title;
+}
+
+/**
  * Downloads the YouTube video audio via a Promise.
  *
  * @param  {Object} req  A request from an Alexa device
@@ -102,7 +185,7 @@ function restart_video(res, offset) {
  * @param  {String} lang The language of the query
  * @return {Promise} Execution of the request
  */
-function get_video(req, res, lang) {
+function getSingleVideo(req, res, lang) {
   var query = req.slot("VideoQuerys");
 
   console.log("Searching ... " + query);
@@ -110,10 +193,23 @@ function get_video(req, res, lang) {
     res.say(response_messages[req.data.request.locale]["NO_QUERY_DEFINED"]).send();
   
   }else{
-    
+    return get_video(query, res, lang);
+  }
+}
+
+/**
+ * Downloads the YouTube video audio via a Promise.
+ *
+ * @param  {String} query  A song ID
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ * @return {Promise} Execution of the request
+ */
+function get_video(query, res, lang){
     return new Promise((resolve, reject) => {
       var search = heroku + "/alexa-search/" + new Buffer(query).toString("base64");
-  
+      console.log('query:', query);
+      
       // Add German to search query depending on the intent used
       if (lang === "de-DE") {
         search += "?language=de";
@@ -137,7 +233,7 @@ function get_video(req, res, lang) {
             
           } else {
             // Set last search & token to equal the current video's parameters
-            var metadata = body_json.info;
+            metadata = body_json.info;
             last_search = heroku + body_json.link;
             last_token = uuidv4();
   
@@ -171,7 +267,6 @@ function get_video(req, res, lang) {
           title: "Search for \"" + query + "\"",
           content: "Alexa found \"" + metadata.title + "\" at " + metadata.original + "."
         });
-  
         // Start playing the video!
         restart_video(res, 0);
       }
@@ -182,9 +277,7 @@ function get_video(req, res, lang) {
       // Error in promise
       res.fail(reason);
     });
-  }
 }
-
 /**
  * Blocks until the audio has been loaded on the server.
  *
@@ -205,6 +298,226 @@ function wait_for_video(id, callback) {
       }
     });
   }, 2000);
+}
+
+/**
+ * Call a playlist with it name
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ * @return {Promise} Execution of the request
+ */
+function play_list(req, res, lang) {
+  var query = req.slot("PlayListQuerys");
+  
+  console.log("Searching ... " + query);
+  if (query == null){
+    res.say(response_messages[req.data.request.locale]["NO_PLIST_QUERY_DEFINED"]).send();
+  }else{
+    PlayListTitles = set_playList_Array(query);
+    if(PlayListTitles.length == 0){
+      res.say(response_messages[req.data.request.locale]["NO_PLIST_FOUND"]).send();
+    }else{
+      var title = get_next_title();
+      is_play_list = true;
+      return get_video(title, res, lang);
+    }
+  }
+}
+
+/**
+ * Play the next Song of the current Playlist
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ * @return {Promise} Execution of the request
+ */
+function play_next(req, res, lang){
+  set_playList_Array(CurrentPlayList);
+  var title = get_next_title();
+  return get_video(title, res, lang);
+}
+
+/**
+ * Play the previous Song of the current Playlist
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ * @return {Promise} Execution of the request
+ */
+function play_prev(req, res, lang){
+  set_playList_Array(CurrentPlayList);
+  var title = get_prev_title();
+  return get_video(title, res, lang);
+}
+
+/**
+ * Play the next Song of the current Playlist
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ * @return {Promise} Execution of the request
+ */
+function play_list_next(req, res, offset) {
+    // Generate new token
+    last_token = uuidv4();
+
+    set_playList_Array(CurrentPlayList);
+    var title = get_next_title();
+    get_video(title, res, lang);
+  
+    last_search = heroku + '/site/' + title + '.m4a';
+    
+    // Replay the last searched audio back into Alexa
+    res.audioPlayerPlayStream("REPLACE_ALL", {
+      url: last_search,
+      streamFormat: "AUDIO_MPEG",
+      token: last_token,
+      offsetInMilliseconds: offset
+    });
+
+    // Record playback start time
+    last_playback.start = new Date().getTime();
+}
+
+/**
+ * Check wherever the Song ID exists or not
+ *
+ * @param  {String} PlayListName  A Playlist name
+ * @param  {Object} id A Song ID
+ * @return {BOOLEAN} True if Exists, False else
+ */
+function isIDExists(PlayListName, id){
+  //Check if file exists and get PlayList items
+  var fs = require('fs');
+  if (fs.existsSync(StorePath + PlayListName + '.txt')) {
+    PlayListTitles = set_playList_Array(PlayListName);
+    //Check if ID already exits in PlayList
+    if (PlayListTitles.indexOf(id) > -1) {
+      //In the array!
+      return true;
+    } else {
+      return false;
+    }
+  }else{
+    return false;
+  }
+}
+
+/**
+ * Add Song to the PlayList specific with Playlist Name
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ */
+function add_to_play_list(req, res, lang){
+  var song_ID = '';
+  var query = req.slot("PlayListQuerys");
+  if (query == null){
+    res.say(response_messages[req.data.request.locale]["NO_PLIST_QUERY_DEFINED"]).send();
+  }else if(has_video()){
+    var fs = require('fs');
+    if (fs.existsSync(StorePath + query + '.txt')) {
+      //Check if ID exist
+      var isIDexists = isIDExists(query, metadata.id);
+      if(isIDexists){
+        res.say(response_messages[req.data.request.locale]["ALREADY_IN_PLAYLIST"].formatUnicorn(query));
+      }else{
+        //Create PlayList file if not exists and insert the title ID
+        console.log('insert in PlayList content');
+        song_ID = metadata.id + '\n';
+        console.log('song_ID:', song_ID);
+            
+        fs.appendFile(StorePath + query + '.txt', song_ID, function (err) {
+          if (err) throw err;
+        });
+        res.say(response_messages[req.data.request.locale]["ADD_TO_PLAYLIST"].formatUnicorn(query)); 
+      }
+    }else{
+      //Create PlayList file if not exists and insert the title ID
+      console.log('insert in PlayList content');
+      song_ID = metadata.id + '\n';
+      console.log('song_ID:', song_ID);
+            
+      fs.appendFile(StorePath + query + '.txt', song_ID, function (err) {
+        if (err) throw err;
+      });
+      res.say(response_messages[req.data.request.locale]["ADD_TO_PLAYLIST"].formatUnicorn(query)); 
+    }
+  }
+}
+
+/**
+ * Remove Song from the PlayList specific with Playlist Name
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ */
+function remove_from_play_list(req, res, lang){
+  //Check if ID exist
+  var isIDexists = isIDExists(CurrentPlayList, metadata.id);
+  if(isIDexists){
+    PlayListTitles = set_playList_Array(CurrentPlayList);
+    
+    PlayListTitles.forEach(function(entry) {
+      console.log('item vor:', entry);
+    });
+    
+    var idIndex = PlayListTitles.indexOf(metadata.id);
+    PlayListTitles.splice(idIndex, 1);
+    
+    PlayListTitles.forEach(function(entry) {
+      console.log('item after:', entry);
+    });
+    
+    //remove PlayList file
+    var fs = require('fs');
+    fs.unlink(PlayListPath);
+    console.log('PlayListTitles.length:', PlayListTitles.length);
+    
+    PlayListTitles.forEach(function(entry) {
+      if(entry){
+        fs.appendFile(PlayListPath, entry + '\n', function (err) {
+          if (err) throw err;
+        });
+      }
+    });
+    
+    res.say(response_messages[req.data.request.locale]["REMOVE_FROM_PLAYLIST"]);
+  }else{
+    res.say(response_messages[req.data.request.locale]["NOT_IN_PLAYLIST"]);
+  }
+}
+
+/**
+ * Remove PlayList specific with Playlist Name
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ */
+function remove_play_list(req, res, lang){
+  var query = req.slot("PlayListQuerys");
+  if (query == null){
+    res.say(response_messages[req.data.request.locale]["NO_PLIST_QUERY_DEFINED"]).send();
+  }else{
+    //Check if file exists
+    var fs = require('fs');
+    console.log('PlayListPath', StorePath + query + '.txt');
+    if (fs.existsSync(StorePath + query + '.txt')) {
+      //remove PlayList file
+      fs.unlink(StorePath + query + '.txt');
+      res.say(response_messages[req.data.request.locale]["PLAYLIST_REMOVED"].formatUnicorn(query)).send();
+    }else{
+      res.say(response_messages[req.data.request.locale]["NO_PLIST_FOUND"]).send();
+    }
+  }
 }
 
 // Filter out bad requests (the client's ID is not the same as the server's)
@@ -233,7 +546,8 @@ app.intent("GetVideoIntent", {
     ]
   },
   function(req, res) {
-    return get_video(req, res, "en-US");
+    lang = "en-US";
+    return getSingleVideo(req, res, lang);
   }
 );
 
@@ -249,7 +563,71 @@ app.intent("GetVideoGermanIntent", {
     ]
   },
   function(req, res) {
-    return get_video(req, res, "de-DE");
+    lang = "de-DE";
+    return getSingleVideo(req, res, lang);
+  }
+);
+
+// Looking up a play list
+app.intent("GetPlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "play list {-|PlayListQuery}"
+    ]
+  },
+  function(req, res) {
+    lang = "de-DE";
+    return play_list(req, res, lang);
+  }
+);
+
+// Add item to the play list
+app.intent("SetPlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "in play list {-|PlayListQuery} einfügen",
+      "in playlist {-|PlayListQuery} einfügen"
+    ]
+  },
+  function(req, res) {
+    lang = "de-DE";
+    return add_to_play_list(req, res, lang);
+  }
+);
+
+// Remove item from play list
+app.intent("RemoveIdPlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "von play list {-|PlayListQuery} entfernen",
+      "von playlist {-|PlayListQuery} entfernen"
+    ]
+  },
+  function(req, res) {
+    lang = "de-DE";
+    return remove_from_play_list(req, res, lang);
+  }
+);
+
+// Remopve play list
+app.intent("RemovePlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "von play list {-|PlayListQuery} entfernen",
+      "von playlist {-|PlayListQuery} entfernen"
+    ]
+  },
+  function(req, res) {
+    lang = "de-DE";
+    return remove_play_list(req, res, lang);
   }
 );
 
@@ -263,32 +641,36 @@ app.audioPlayer("PlaybackFailed", function(req, res) {
 // Use playback finished events to repeat audio
 app.audioPlayer("PlaybackNearlyFinished", function(req, res) {
   // Repeat is enabled, so begin next playback
-  if (has_video() && (repeat_infinitely || repeat_once)) {
-    // Generate new token for the stream
-    var new_token = uuidv4();
-
-    // Inject the audio that was just playing back into Alexa
-    res.audioPlayerPlayStream("ENQUEUE", {
-      url: last_search,
-      streamFormat: "AUDIO_MPEG",
-      token: new_token,
-      expectedPreviousToken: last_token,
-      offsetInMilliseconds: 0
-    });
-
-    // Set last token to new token
-    last_token = new_token;
-
-    // Record playback start time
-    last_playback.start = new Date().getTime();
-
-    // We repeated the video, so singular repeat is set to false
-    repeat_once = false;
-
-    // Send response to Alexa device
-    res.send();
-  }
-  else {
+  if (has_video() || has_playList()){
+    if(repeat_infinitely || repeat_once) {
+      // Generate new token for the stream
+      var new_token = uuidv4();
+  
+      // Inject the audio that was just playing back into Alexa
+      res.audioPlayerPlayStream("ENQUEUE", {
+        url: last_search,
+        streamFormat: "AUDIO_MPEG",
+        token: new_token,
+        expectedPreviousToken: last_token,
+        offsetInMilliseconds: 0
+      });
+  
+      // Set last token to new token
+      last_token = new_token;
+  
+      // Record playback start time
+      last_playback.start = new Date().getTime();
+  
+      // We repeated the video, so singular repeat is set to false
+      repeat_once = false;
+  
+      // Send response to Alexa device
+      res.send();
+    }
+    if(has_playList()){ /* Play next song if Playlist */
+      play_list_next(req, res, 0);
+    }
+  } else {
     // Token is set to null because playback is done
     last_token = null;
   }
@@ -312,6 +694,7 @@ var stop_intent = function(req, res) {
     if (is_streaming_video()) {
       last_token = null;
       res.audioPlayerStop();
+      is_play_list = false;
     }
 
     // Clear the entire stream queue
@@ -399,5 +782,29 @@ app.intent("AMAZON.LoopOffIntent", {}, function(req, res) {
 app.intent("AMAZON.HelpIntent", {}, function(req, res) {
   res.say(response_messages[req.data.request.locale]["HELP_TRIGGERED"]).send();
 });
+
+// User told Alexa to play the next audio in play list
+app.intent("AMAZON.NextIntent", {}, function(req, res) {
+  if (is_streaming_video() && has_playList()) {
+     return play_next(req, res, lang);
+  }
+  else {
+    res.say(response_messages[req.data.request.locale]["NOTHING_TO_RESUME"]);
+  }
+  res.send();
+});
+
+// User told Alexa to play the Previou audio in play list
+app.intent("AMAZON.PreviousIntent", {}, function(req, res) {
+  if (is_streaming_video() && has_playList()) {
+     return play_prev(req, res, lang);
+  }
+  else {
+    res.say(response_messages[req.data.request.locale]["NOTHING_TO_RESUME"]);
+  }
+  res.send();
+});
+
+
 
 exports.handler = app.lambda();
