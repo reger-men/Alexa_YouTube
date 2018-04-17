@@ -18,12 +18,12 @@ This WebApp runs on heroku server, the corresponding source code can be found [h
 
 ## Commands examples ## 
 * To play song with title {title}
- * ``` Alexa ask youtube for {title}```
+  * ``` Alexa ask youtube for {title}```
 * To insert the current Song in the PlayList number {number}
- * ``` Alexa ask youtube for add to playlist {number}```
+  * ``` Alexa ask youtube for add to playlist {number}```
 * To Remove song from the current PlayList 
- * ``` Alexa ask youtube for remove from playlist```
+  * ``` Alexa ask youtube for remove from playlist```
 * To remove PlaList number {number}
- * ``` Alexa ask youtube for remove playlist {number}```
+  * ``` Alexa ask youtube for remove playlist {number}```
 * To play the next song of the current PlayList:
- * ``` Alexa next```
+  * ``` Alexa next```
