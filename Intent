@@ -1,0 +1,153 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "youtube",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.LoopOffIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.LoopOnIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.RepeatIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GetVideoGermanIntent",
+                    "slots": [
+                        {
+                            "name": "VideoQuerys",
+                            "type": "VIDEOS"
+                        }
+                    ],
+                    "samples": [
+                        "suchen nach {VideoQuerys}",
+                        "spielen {VideoQuerys}",
+                        "youtube {VideoQuerys}",
+                        "{VideoQuerys}"
+                    ]
+                },
+                {
+                    "name": "GetPlayListIntent",
+                    "slots": [
+                        {
+                            "name": "PlayListQuerys",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "play list {PlayListQuerys}",
+                        "playlist {PlayListQuerys}"
+                    ]
+                },
+                {
+                    "name": "SetPlayListIntent",
+                    "slots": [
+                        {
+                            "name": "PlayListQuerys",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "insert in play list {PlayListQuerys}",
+                        "insert in playlist {PlayListQuerys}"
+                    ]
+                },
+                {
+                    "name": "RemoveIdPlayListIntent",
+                    "slots": [],
+                    "samples": [
+                        "remove from play list",
+                        "remove from playlist"
+                    ]
+                },
+                {
+                    "name": "RemovePlayListIntent",
+                    "slots": [
+                        {
+                            "name": "PlayListQuerys",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "remove play list {PlayListQuerys}",
+                        "remove playlist {PlayListQuerys}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "VIDEOS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Ed Sheeran - Shape of You"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sia - Cheap Thrills"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bruno Mars - Grenade"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "James Blunt - You're Beautiful "
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "REVOLVERHELD - SOMMER IN SCHWEDEN lyric"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "john travolta and olivia newton john"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Philipp Dittberner - Das ist dein Leben"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
