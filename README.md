@@ -2,6 +2,9 @@
 Play Youtube Music via Alexa Echo.
 Alexa_YouTube skill makes it easy to play music and playlist from YouTube.
 
+## How to install ##
+[![Alt text](https://img.youtube.com/vi/xr8Mt6yWTBg/0.jpg)](https://www.youtube.com/watch?v=xr8Mt6yWTBg)
+
 ## features ##
 User ...
 * ... doesn't need a YouTube account to groove this skill
