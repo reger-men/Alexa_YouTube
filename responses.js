@@ -1,5 +1,6 @@
 module.exports = {
   "en-US": {
+    "AND": " and",
     "NO_RESULTS_FOUND": "{0} did not return any results on YouTube.",
     "NO_VIDEO_QUERY_DEFINED": "Please describe in your request which titles you would like to play.",
     "NO_PLIST_QUERY_DEFINED": "Please describe in your request which Playlist you would like to play.",
@@ -9,6 +10,9 @@ module.exports = {
     "ALREADY_IN_PLAYLIST": "Song has already been added to PlayList {0}.",
     "REMOVE_FROM_PLAYLIST": "Song was already removed from the PlayList.",
     "PLAYLIST_REMOVED": "PlayList {0} has been removed.",
+    "ALL_PLAYLISTS_REMOVED": "All PlayLists have been removed.",
+    "GET_ALL_PLAYLISTS": "The following playlists were found: {0}.",
+    "ONLY_NUMBER_PLIST_QUERY": "Only numbers are allowed as playlist names.",
     "NOT_IN_PLAYLIST": "Song was not found in the PlayList.",
     "NOTHING_TO_RESUME": "You are not playing anything currently.",
     "NOTHING_TO_REPEAT": "You have not selected a video to play.",
@@ -18,6 +22,7 @@ module.exports = {
     "HELP_TRIGGERED": "To use the YouTube skill, tell the skill to search for the video you want. Additionally, once the video is playing, you can tell Alexa to  pause, restart, or loop it."
   },
   "de-DE": {
+    "AND": " und",
     "NO_RESULTS_FOUND": "Keine Ergebnisse auf Youtube gefunden.",
     "NO_VIDEO_QUERY_DEFINED": "Bitte nennen Sie in Ihrer Anfrage, welche Titel Sie hören möchten.",
     "NO_PLIST_QUERY_DEFINED": "Bitte nennen Sie in Ihrer Anfrage, welche Playlist Sie abspielen möchten.",
@@ -27,6 +32,9 @@ module.exports = {
     "ALREADY_IN_PLAYLIST": "Lied wurde bereits in der PlayList {0} eingefügt.",
     "REMOVE_FROM_PLAYLIST": "Lied wurde von der PlayList entfernt.",
     "PLAYLIST_REMOVED": "PlayList {0} wurde entfernt.",
+    "ALL_PLAYLISTS_REMOVED": "Alle PlayLists wurde entfernt.",
+    "GET_ALL_PLAYLISTS": "Die folgende PlayLists wurde gefunden: {0}.",
+    "ONLY_NUMBER_PLIST_QUERY": "Nur Nummer sind als Playlist Namen erlaubt.",
     "NOT_IN_PLAYLIST": "Lied wurde nicht in der PlayList gefunden.",
     "NOTHING_TO_RESUME": "Sie spielen derzeit nichts.",
     "NOTHING_TO_REPEAT": "Sie haben kein Video zum Abspielen ausgewählt.",
