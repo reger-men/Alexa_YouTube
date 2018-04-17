@@ -36,6 +36,14 @@
                     "samples": []
                 },
                 {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
                     "name": "GetVideoGermanIntent",
                     "slots": [
                         {
@@ -46,7 +54,55 @@
                     "samples": [
                         "suchen nach {VideoQuerys}",
                         "spielen {VideoQuerys}",
+                        "youtube {VideoQuerys}",
                         "{VideoQuerys}"
+                    ]
+                },
+                {
+                    "name": "GetPlayListIntent",
+                    "slots": [
+                        {
+                            "name": "PlayListQuerys",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "play list {PlayListQuerys}",
+                        "playlist {PlayListQuerys}"
+                    ]
+                },
+                {
+                    "name": "SetPlayListIntent",
+                    "slots": [
+                        {
+                            "name": "PlayListQuerys",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "in play list {PlayListQuerys} einfügen",
+                        "in playlist {PlayListQuerys} einfügen"
+                    ]
+                },
+                {
+                    "name": "RemoveIdPlayListIntent",
+                    "slots": [],
+                    "samples": [
+                        "von play list entfernen",
+                        "von playlist entfernen"
+                    ]
+                },
+                {
+                    "name": "RemovePlayListIntent",
+                    "slots": [
+                        {
+                            "name": "PlayListQuerys",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "play list {PlayListQuerys} entfernen",
+                        "playlist {PlayListQuerys} entfernen"
                     ]
                 }
             ],
@@ -56,27 +112,27 @@
                     "values": [
                         {
                             "name": {
-                                "value": "prince"
+                                "value": "Ed Sheeran - Shape of You"
                             }
                         },
                         {
                             "name": {
-                                "value": "the fray"
+                                "value": "Sia - Cheap Thrills"
                             }
                         },
                         {
                             "name": {
-                                "value": "the rolling stones"
+                                "value": "Bruno Mars - Grenade"
                             }
                         },
                         {
                             "name": {
-                                "value": "toad the wet sproket"
+                                "value": "James Blunt - You're Beautiful "
                             }
                         },
                         {
                             "name": {
-                                "value": "KC and the sunshine band"
+                                "value": "REVOLVERHELD - SOMMER IN SCHWEDEN lyric"
                             }
                         },
                         {
@@ -86,87 +142,7 @@
                         },
                         {
                             "name": {
-                                "value": "DJ jazzy jeff and the fresh prince"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "lola"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "hello dolly"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "love me tender"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "fools gold"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "roberta flack killing me softly with his song"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "stevie wonder superstition"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "boston"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "full circle"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "dubstar"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "underworld"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "orbital"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "let me be your fantasy"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "pop will eat itself"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "ultra nate"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "4 hours Peaceful and Relaxing Instrumental Music"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "hobino"
+                                "value": "Philipp Dittberner - Das ist dein Leben"
                             }
                         }
                     ]
