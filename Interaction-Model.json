@@ -104,6 +104,22 @@
                         "remove play list {PlayListQuerys}",
                         "remove playlist {PlayListQuerys}"
                     ]
+                },
+                {
+                    "name": "RemoveAllPlayListIntent",
+                    "slots": [],
+                    "samples": [
+                        "remove all play lists",
+                        "remove all playlists"
+                    ]
+                },
+                {
+                    "name": "GetAllPlayListIntent",
+                    "slots": [],
+                    "samples": [
+                        "show all play lists",
+                        "show all playlists"
+                    ]
                 }
             ],
             "types": [
