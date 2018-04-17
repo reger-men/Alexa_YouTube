@@ -1,9 +1,5 @@
 module.exports = {
   "en-US": {
-    "AND": " and",
-    "NO_RESULTS_FOUND": "{0} did not return any results on YouTube.",
-    "NO_VIDEO_QUERY_DEFINED": "Please describe in your request which titles you would like to play.",
-    "NO_PLIST_QUERY_DEFINED": "Please describe in your request which Playlist you would like to play.",
     "NO_PLIST_FOUND": "No Playlist found.",
     "NOW_PLAYING": "I am now playing {0}.",
     "ADD_TO_PLAYLIST": "Song has been added to the PlayList {0}.",
