@@ -48,14 +48,14 @@
                     "slots": [
                         {
                             "name": "VideoQuerys",
-                            "type": "VIDEOS"
+                            "type": "MusicVideo"
                         }
                     ],
                     "samples": [
+                        "{VideoQuerys}",
                         "suchen nach {VideoQuerys}",
                         "spielen {VideoQuerys}",
-                        "youtube {VideoQuerys}",
-                        "{VideoQuerys}"
+                        "youtube {VideoQuerys}"
                     ]
                 },
                 {
@@ -68,7 +68,8 @@
                     ],
                     "samples": [
                         "play list {PlayListQuerys}",
-                        "playlist {PlayListQuerys}"
+                        "playlist {PlayListQuerys}",
+                        "my playlist {PlayListQuerys}"
                     ]
                 },
                 {
@@ -108,41 +109,501 @@
             ],
             "types": [
                 {
-                    "name": "VIDEOS",
+                    "name": "MusicVideo",
                     "values": [
                         {
                             "name": {
-                                "value": "Ed Sheeran - Shape of You"
+                                "value": "24k magic"
                             }
                         },
                         {
                             "name": {
-                                "value": "Sia - Cheap Thrills"
+                                "value": "7 years"
                             }
                         },
                         {
                             "name": {
-                                "value": "Bruno Mars - Grenade"
+                                "value": "ain't my fault"
                             }
                         },
                         {
                             "name": {
-                                "value": "James Blunt - You're Beautiful "
+                                "value": "alarm"
                             }
                         },
                         {
                             "name": {
-                                "value": "REVOLVERHELD - SOMMER IN SCHWEDEN lyric"
+                                "value": "all night"
                             }
                         },
                         {
                             "name": {
-                                "value": "john travolta and olivia newton john"
+                                "value": "all we know"
                             }
                         },
                         {
                             "name": {
-                                "value": "Philipp Dittberner - Das ist dein Leben"
+                                "value": "another day of sun"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bad and boujee"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bad things"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "be the one"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "black beatles"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "by your side"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "call on me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "can't stop the feeling"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "castle on the hill"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cheap thrills"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "city of stars"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "closer"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cold water"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "controlla"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dancing on my own"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "deja vu"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "don't leave"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "don't let me down"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "don't wanna know"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "everglow"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "faded"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "fake love"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "find me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "heathens"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hello"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "how far I'll go"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "human"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hymn for the weekend"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "I don't wanna live forever"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "I feel it coming"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "I took a pill in ibiza"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "I would like"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "in the name of love"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "into you"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "issues"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "just hold on"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "let me love you"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lock doh"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "love me now"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "love my life"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "love on me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "love yourself"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lovesick"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lush life"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "make me cry"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mercy"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mr brightside"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "my way"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "no lie"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "not in love"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "now and later"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "oh lord"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "on hold"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "one dance"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "only one"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "oops"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "paris"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "party"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "party monster"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "perfect strangers"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "photograph"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "redbone"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rockabye"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "say you won't let go"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "scars to your beautiful"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "september song"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sexual"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "shape of you"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "shed a light"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "should've been me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "shout out to my ex"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "side to side"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "so good"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "solo dance"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sorry"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "starboy"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "starving"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "stitches"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "stressed out"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "text from your ex"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the a team"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the greatest"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the mack"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "there's only one of you"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "thinking out loud"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "this girl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "this is what you came for"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "too good"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "touch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "treat you better"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "water under the bridge"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "you don't know me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "you want me"
                             }
                         }
                     ]
