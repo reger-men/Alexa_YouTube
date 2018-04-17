@@ -420,6 +420,8 @@ function add_to_play_list(req, res, lang){
   var query = req.slot("PlayListQuerys");
   if (query == null){
     res.say(response_messages[req.data.request.locale]["NO_PLIST_QUERY_DEFINED"]).send();
+  }else if(isNaN(query)){
+    res.say(response_messages[req.data.request.locale]["ONLY_NUMBER_PLIST_QUERY"]).send();
   }else if(has_video()){
     var fs = require('fs');
     if (fs.existsSync(StorePath + query + '.txt')) {
@@ -508,16 +510,101 @@ function remove_play_list(req, res, lang){
     res.say(response_messages[req.data.request.locale]["NO_PLIST_QUERY_DEFINED"]).send();
   }else{
     //Check if file exists
-    var fs = require('fs');
-    console.log('PlayListPath', StorePath + query + '.txt');
-    if (fs.existsSync(StorePath + query + '.txt')) {
-      //remove PlayList file
-      fs.unlink(StorePath + query + '.txt');
+    var is_file_removed = remove_file(StorePath + query + '.txt');
+    if(is_file_removed){
       res.say(response_messages[req.data.request.locale]["PLAYLIST_REMOVED"].formatUnicorn(query)).send();
     }else{
       res.say(response_messages[req.data.request.locale]["NO_PLIST_FOUND"]).send();
     }
   }
+}
+
+/**
+ * Remove file
+ *
+ * @param  {String} file_path  A path of the file to be removed
+ * @return  {Boolean} True if file has been removed, False else
+ */
+function remove_file(file_path){
+  var fs = require('fs');
+    console.log('PlayListPath', file_path);
+    if (fs.existsSync(file_path)) {
+      //remove PlayList file
+      fs.unlink(file_path);
+      return true; // Done file was removed
+    }else{
+      return false; // Failed file wasn't removed
+    }
+}
+
+/**
+ * Remove All PlayLists files
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ */
+function remove_all_playlists(req, res, lang){
+  console.log('remove_all_playlists');
+  
+  var isCleared = clear_dir('/tmp/');
+  console.log(isCleared);
+  if(isCleared){
+    res.say(response_messages[req.data.request.locale]["ALL_PLAYLISTS_REMOVED"]).send();
+  }else{
+    res.say(response_messages[req.data.request.locale]["NO_PLIST_FOUND"]).send();
+  }
+}
+
+/**
+ * Get All PlayLists files
+ *
+ * @param  {Object} req  A request from an Alexa device
+ * @param  {Object} res  A response that will be sent to the device
+ * @param  {String} lang The language of the query
+ */
+function get_all_playlists(req, res, lang){
+  console.log('remove_all_playlists');
+
+  var playlists = '';
+  const fs = require('fs');
+  fs
+    .readdirSync('/tmp/')
+    .forEach((file) => {
+      if ((file.slice(-4) === '.txt') && (file.indexOf('PlayList_') > -1)){
+        console.log(file);
+        playlists += (file.split('PlayList_')[1]).split('.txt')[0] + ', ';
+      }
+        
+  });
+  playlists = playlists.slice(0, -2); //remove the last ','
+  var lastComma = playlists.lastIndexOf(",") + 1;
+  playlists = playlists.slice(0, lastComma) + response_messages[req.data.request.locale]["AND"] + playlists.slice(lastComma);
+  res.say(response_messages[req.data.request.locale]["GET_ALL_PLAYLISTS"].formatUnicorn(playlists)).send();
+}
+
+/**
+ * Clear directory: remove all files in directory
+ *
+ * @param  {String} dir_path  A Path of the directory
+ */
+function clear_dir(dir_path){
+  const fs = require('fs');
+  var isDone = false;
+  
+  fs
+    .readdirSync(dir_path)
+    .forEach((file) => {
+      if ((file.slice(-4) === '.txt') && (file.indexOf('PlayList_') > -1)){
+        console.log(file);
+        var is_file_removed = remove_file('/tmp/' + file);
+        if(is_file_removed){
+          isDone = true;
+        }
+      }
+        
+  });
+  return isDone;
 }
 
 // Filter out bad requests (the client's ID is not the same as the server's)
@@ -615,7 +702,7 @@ app.intent("RemoveIdPlayListIntent", {
   }
 );
 
-// Remopve play list
+// Remopve playlist
 app.intent("RemovePlayListIntent", {
     "slots": {
       "PlayListQuery": "VIDEOS"
@@ -631,6 +718,31 @@ app.intent("RemovePlayListIntent", {
   }
 );
 
+// Remopve all playlists
+app.intent("RemoveAllPlayListIntent", {
+    "utterances": [
+      "alle play list entfernen",
+      "alle playlist entfernen"
+    ]
+  },
+  function(req, res) {
+    lang = "de-DE";
+    return remove_all_playlists(req, res, lang);
+  }
+);
+
+// Get all playlists
+app.intent("GetAllPlayListIntent", {
+    "utterances": [
+      "alle play list entfernen",
+      "alle playlist entfernen"
+    ]
+  },
+  function(req, res) {
+    lang = "de-DE";
+    return get_all_playlists(req, res, lang);
+  }
+);
 // Log playback failed events
 app.audioPlayer("PlaybackFailed", function(req, res) {
   console.error("Playback failed.");
