@@ -48,7 +48,7 @@
                     "slots": [
                         {
                             "name": "VideoQuerys",
-                            "type": "MusicVideo"
+                            "type": "MUSICVIDEO"
                         }
                     ],
                     "samples": [
@@ -109,7 +109,7 @@
             ],
             "types": [
                 {
-                    "name": "MusicVideo",
+                    "name": "MUSICVIDEO",
                     "values": [
                         {
                             "name": {
