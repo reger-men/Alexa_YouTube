@@ -25,7 +25,7 @@ var request = require("request");
 var ssml = require("ssml-builder");
 var response_messages = require("./responses");
 
-var StorePath = '/tmp/PlayList_';
+var StorePath = '/tmp/PlayList_'; /*NOTE: /tmp/ folder in aws is an non-persistent scratch area.*/
 var PlayListPath = '';
 var PlayListTitles = [];
 var PlayListIndex = 0;
