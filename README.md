@@ -30,7 +30,7 @@ This WebApp runs on heroku server, the corresponding source code can be found [h
   * ``` Alexa ask youtube for remove playlist {number}```
 * To play the next song of the current PlayList:
   * ``` Alexa next```
- * To get all playlists back
+* To get all playlists back
   * ``` Alexa ask youtube for show all playlists```
   
   ## Notes ##
