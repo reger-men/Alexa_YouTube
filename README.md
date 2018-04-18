@@ -30,3 +30,6 @@ This WebApp runs on heroku server, the corresponding source code can be found [h
   * ``` Alexa ask youtube for remove playlist {number}```
 * To play the next song of the current PlayList:
   * ``` Alexa next```
+  
+  ## Notes ##
+  Please note that the aws /tmp/ folder is a non-persistent scratch area. This means that Playlist are only temporarily stored in it. To solve that, please use an other storage service or your own server storage.
