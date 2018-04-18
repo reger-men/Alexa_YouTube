@@ -564,7 +564,7 @@ function remove_all_playlists(req, res, lang){
  * @param  {String} lang The language of the query
  */
 function get_all_playlists(req, res, lang){
-  console.log('remove_all_playlists');
+  console.log('get_all_playlists');
 
   var playlists = '';
   const fs = require('fs');
@@ -577,10 +577,16 @@ function get_all_playlists(req, res, lang){
       }
         
   });
-  playlists = playlists.slice(0, -2); //remove the last ','
-  var lastComma = playlists.lastIndexOf(",") + 1;
-  playlists = playlists.slice(0, lastComma) + response_messages[req.data.request.locale]["AND"] + playlists.slice(lastComma);
-  res.say(response_messages[req.data.request.locale]["GET_ALL_PLAYLISTS"].formatUnicorn(playlists)).send();
+  if(playlists){
+    playlists = playlists.slice(0, -2); //remove the last ','
+    var lastComma = playlists.lastIndexOf(",") + 1;
+    if(lastComma != 0){
+      playlists = playlists.slice(0, lastComma) + response_messages[req.data.request.locale]["AND"] + playlists.slice(lastComma);
+    }
+    res.say(response_messages[req.data.request.locale]["GET_ALL_PLAYLISTS"].formatUnicorn(playlists)).send();
+  }else{
+    res.say(response_messages[req.data.request.locale]["NO_PLIST_FOUND"]).send();
+  }
 }
 
 /**
