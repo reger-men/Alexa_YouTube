@@ -44,7 +44,7 @@
                     "samples": []
                 },
                 {
-                    "name": "GetVideoGermanIntent",
+                    "name": "GetVideoIntent",
                     "slots": [
                         {
                             "name": "VideoQuerys",
