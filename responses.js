@@ -21,6 +21,28 @@ module.exports = {
     "REPEAT_TRIGGERED": "I will repeat your {0} selection once.",
     "HELP_TRIGGERED": "To use the YouTube skill, tell the skill to search for the video you want. Additionally, once the video is playing, you can tell Alexa to  pause, restart, or loop it."
   },
+  "it-IT": {
+    "and": "e",
+    "NO_RESULTS_FOUND": "Non ho trovato nessun risultato per {0}.",
+    "NO_VIDEO_QUERY_DEFINED": "Per favore, dimmi nella tua richiesta quale brano vorresti riprodurre.",
+    "NO_PLIST_QUERY_DEFINED": "Per favore, dimmi nella tua richiesta quale playlist vorresti riprodurre.",
+    "NO_PLIST_FOUND": "Non ho trovato nessuna playlist per {0}.",
+    "NOW_PLAYING": "Sto riproducendo {0}.",
+    "ADD_TO_PLAYLIST": "La canzone è stata aggiunta alla lista {0}.",
+    "ALREADY_IN_PLAYLIST": "La canzone è già nella lista {0}.",
+    "REMOVE_FROM_PLAYLIST": "La canzone è stata rimossa dalla lista",
+    "PLAYLIST_REMOVED": "La playlist {0} è stata rimossa.",
+    "ALL_PLAYLISTS_REMOVED": "Tutte le playlist sono state rimosse.",
+    "GET_ALL_PLAYLISTS": "Sono state trovate queste playlist: {0}.",
+    "ONLY_NUMBER_PLIST_QUERY": "Sono disponibili solamente numeri come nomi delle playlist.",
+    "NOT_IN_PLAYLIST": "La canzone non è stata trovata nella playlist.",
+    "NOTHING_TO_RESUME": "Al momento non stai riproducendo niente.",
+    "NOTHING_TO_REPEAT": "Non hai selezionato alcun video da riprodurre.",
+    "LOOP_ON_TRIGGERED": "Ripeterò il brano {0} per quanto lo vorrai.",
+    "LOOP_OFF_TRIGGERED": "Non ripeterò più il brano {0}",
+    "REPEAT_TRIGGERED": "Ripeterò il brano {0} una volta sola.",
+    "HELP_TRIGGERED": "Per usare la skill di Youtube, dì alla skill di cercare il video che vuoi. In più, una volta che il video è in riproduzione, puoi dire ad Alexa di metterlo in pausa, farlo ripartire, o metterlo in loop."
+  },
   "de-DE": {
     "AND": " und",
     "NO_RESULTS_FOUND": "Keine Ergebnisse auf Youtube gefunden.",

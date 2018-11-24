@@ -214,7 +214,12 @@ function get_video(query, res, lang){
       if (lang === "de-DE") {
         search += "?language=de";
       }
-      
+	  
+	  // Add Italian search query depending on the intent used
+	  if (lang === "it-IT") {
+		search += "?language=it";
+	  }
+		
       // Make request to download server
       request(search, function(err, res, body) {
         if (err) {
@@ -655,8 +660,28 @@ app.intent("GetVideoGermanIntent", {
       "spielen {-|VideoQuery}"
     ]
   },
+
   function(req, res) {
     lang = "de-DE";
+    return getSingleVideo(req, res, lang);
+  }
+);
+
+// Looking up a video in Italian
+app.intent("GetVideoItalianIntent", {
+    "slots": {
+      "VideoQuery": "VIDEOS"
+    },
+    "utterances": [
+      "di cercare {-|VideoQuery}",
+      "cerca {-|VideoQuery}",
+      "di riprodurre {-|VideoQuery}",
+	  "riproduci {-|VideoQuery}"
+    ]
+  },
+  
+    function(req, res) {
+    lang = "it-IT";
     return getSingleVideo(req, res, lang);
   }
 );
@@ -672,6 +697,22 @@ app.intent("GetPlayListIntent", {
   },
   function(req, res) {
     lang = "de-DE";
+    return play_list(req, res, lang);
+  }
+);
+
+// Looking up a play list in Italian
+app.intent("GetItalianPlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "di cercare la playlist {-|PlayListQuery}",
+	  "di cercare la playlist {-|PlayListQuery}"
+    ]
+  },
+  function(req, res) {
+    lang = "it-IT";
     return play_list(req, res, lang);
   }
 );
@@ -692,6 +733,22 @@ app.intent("SetPlayListIntent", {
   }
 );
 
+// Add item to the play list in Italian
+app.intent("SetItalianPlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "di inserire nella playlist {-|PlayListQuery}",
+      "di inserire nella play list {-|PlayListQuery}"
+    ]
+  },
+  function(req, res) {
+    lang = "it-IT";
+    return add_to_play_list(req, res, lang);
+  }
+);
+
 // Remove item from play list
 app.intent("RemoveIdPlayListIntent", {
     "slots": {
@@ -708,7 +765,23 @@ app.intent("RemoveIdPlayListIntent", {
   }
 );
 
-// Remopve playlist
+// Remove item from play list in Italian
+app.intent("RemoveIdPlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "di rimuovere dalla playlist {-|PlayListQuery}",
+      "di rimuovere dalla play list {-|PlayListQuery}"
+    ]
+  },
+  function(req, res) {
+    lang = "it-IT";
+    return remove_from_play_list(req, res, lang);
+  }
+);
+
+// Remove playlist
 app.intent("RemovePlayListIntent", {
     "slots": {
       "PlayListQuery": "VIDEOS"
@@ -724,7 +797,23 @@ app.intent("RemovePlayListIntent", {
   }
 );
 
-// Remopve all playlists
+// Remove playlist in Italian
+app.intent("RemovePlayListIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "di rimuovere la playlist {-|PlayListQuery}",
+      "di rimuovere la playlist {-|PlayListQuery}"
+    ]
+  },
+  function(req, res) {
+    lang = "it-IT;
+    return remove_play_list(req, res, lang);
+  }
+);
+
+// Remove all playlists
 app.intent("RemoveAllPlayListIntent", {
     "utterances": [
       "alle play list entfernen",
@@ -733,6 +822,19 @@ app.intent("RemoveAllPlayListIntent", {
   },
   function(req, res) {
     lang = "de-DE";
+    return remove_all_playlists(req, res, lang);
+  }
+);
+
+// Remove all playlists
+app.intent("RemoveAllPlayListIntent", {
+    "utterances": [
+      "di rimuovere tutte le playlist",
+      "di rimuovere tutte le playlist"
+    ]
+  },
+  function(req, res) {
+    lang = "it-IT";
     return remove_all_playlists(req, res, lang);
   }
 );
@@ -749,6 +851,20 @@ app.intent("GetAllPlayListIntent", {
     return get_all_playlists(req, res, lang);
   }
 );
+
+// Get all playlists
+app.intent("GetAllPlayListIntent", {
+    "utterances": [
+      "di mostrare tutte le playlist",
+      "di mostrare tutte le playlist"
+    ]
+  },
+  function(req, res) {
+    lang = "it-IT";
+    return get_all_playlists(req, res, lang);
+  }
+);
+
 // Log playback failed events
 app.audioPlayer("PlaybackFailed", function(req, res) {
   console.error("Playback failed.");
