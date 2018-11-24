@@ -15,7 +15,7 @@ User ...
   * Playlists file contains only the ID of the songs and thus remains quite small
   
 ## Dependencies ##
-Youtube API: This skills need Youtube PI service to access on Videos on Youtube for this purpose, the web app https://youtube-alexa.herokuapp.com/ was created. Of course you can also use other services or create. 
+Youtube API: This skills need Youtube PI service to access on Videos on Youtube for this purpose, the web app https://youtube-alexa.herokuapp.com/ was created. Of course you can also use other services or create new one. 
 
 This WebApp runs on heroku server, the corresponding source code can be found [here](https://github.com/reger-men/YoutubeAPI)
 
