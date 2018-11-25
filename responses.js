@@ -22,7 +22,7 @@ module.exports = {
     "HELP_TRIGGERED": "To use the YouTube skill, tell the skill to search for the video you want. Additionally, once the video is playing, you can tell Alexa to  pause, restart, or loop it."
   },
   "it-IT": {
-    "and": "e",
+    "AND": "e",
     "NO_RESULTS_FOUND": "Non ho trovato nessun risultato per {0}.",
     "NO_VIDEO_QUERY_DEFINED": "Per favore, dimmi nella tua richiesta quale brano vorresti riprodurre.",
     "NO_PLIST_QUERY_DEFINED": "Per favore, dimmi nella tua richiesta quale playlist vorresti riprodurre.",
