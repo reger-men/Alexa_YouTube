@@ -43,7 +43,7 @@ var last_search = null;
 var is_play_list = false;
 var last_token = null;
 var last_playback = {};
-var lang = "en-US";
+var lang = "it-IT";
 
 // Current song is repeating
 var repeat_infinitely = false;
@@ -214,12 +214,12 @@ function get_video(query, res, lang){
       if (lang === "de-DE") {
         search += "?language=de";
       }
-	  
-	  // Add Italian search query depending on the intent used
-	  if (lang === "it-IT") {
-		search += "?language=it";
-	  }
-		
+      
+      //Add Italian to search query depending on the intent used
+      if (lang === "it-IT") {
+        search += "?language=it";
+      }
+      
       // Make request to download server
       request(search, function(err, res, body) {
         if (err) {
@@ -649,6 +649,23 @@ app.intent("GetVideoIntent", {
   }
 );
 
+// Looking up a video in Italian
+app.intent("GetVideoItalianIntent", {
+    "slots": {
+      "VideoQuery": "VIDEOS"
+    },
+    "utterances": [
+      "di cercare {-|VideoQuery}",
+      "di trovare {-|VideoQuery}",
+      "di riprodurre {-|VideoQuery}"
+    ]
+  },
+  function(req, res) {
+    lang = "it-IT";
+    return getSingleVideo(req, res, lang);
+  }
+);
+
 // Looking up a video in German
 app.intent("GetVideoGermanIntent", {
     "slots": {
@@ -660,55 +677,19 @@ app.intent("GetVideoGermanIntent", {
       "spielen {-|VideoQuery}"
     ]
   },
-
   function(req, res) {
     lang = "de-DE";
     return getSingleVideo(req, res, lang);
-  }
-);
-
-// Looking up a video in Italian
-app.intent("GetVideoItalianIntent", {
-    "slots": {
-      "VideoQuery": "VIDEOS"
-    },
-    "utterances": [
-      "di cercare {-|VideoQuery}",
-      "cerca {-|VideoQuery}",
-      "di riprodurre {-|VideoQuery}",
-	  "riproduci {-|VideoQuery}"
-    ]
-  },
-  
-    function(req, res) {
-    lang = "it-IT";
-    return getSingleVideo(req, res, lang);
-  }
-);
-
-// Looking up a play list
-app.intent("GetPlayListIntent", {
-    "slots": {
-      "PlayListQuery": "VIDEOS"
-    },
-    "utterances": [
-      "play list {-|PlayListQuery}"
-    ]
-  },
-  function(req, res) {
-    lang = "de-DE";
-    return play_list(req, res, lang);
   }
 );
 
 // Looking up a play list in Italian
-app.intent("GetItalianPlayListIntent", {
+app.intent("GetPlayListItalianIntent", {
     "slots": {
       "PlayListQuery": "VIDEOS"
     },
     "utterances": [
-      "di cercare la playlist {-|PlayListQuery}",
-	  "di cercare la playlist {-|PlayListQuery}"
+      "di riprodurre {-|PlayListQuery}"
     ]
   },
   function(req, res) {
@@ -733,14 +714,14 @@ app.intent("SetPlayListIntent", {
   }
 );
 
-// Add item to the play list in Italian
-app.intent("SetItalianPlayListIntent", {
+// Add item to the play list in italian
+app.intent("SetPlayListItalianIntent", {
     "slots": {
       "PlayListQuery": "VIDEOS"
     },
     "utterances": [
-      "di inserire nella playlist {-|PlayListQuery}",
-      "di inserire nella play list {-|PlayListQuery}"
+      "di aggiungere alla play list{-|PlayListQuery}",
+      "di aggiungere alla playlist {-|PlayListQuery}"
     ]
   },
   function(req, res) {
@@ -766,13 +747,13 @@ app.intent("RemoveIdPlayListIntent", {
 );
 
 // Remove item from play list in Italian
-app.intent("RemoveIdPlayListIntent", {
+app.intent("RemoveIdPlayListItalianIntent", {
     "slots": {
       "PlayListQuery": "VIDEOS"
     },
     "utterances": [
-      "di rimuovere dalla playlist {-|PlayListQuery}",
-      "di rimuovere dalla play list {-|PlayListQuery}"
+      "di rimuovere la canzone dalla play list {-|PlayListQuery}",
+      "di rimuovere la canzone dalla play list {-|PlayListQuery}"
     ]
   },
   function(req, res) {
@@ -781,7 +762,7 @@ app.intent("RemoveIdPlayListIntent", {
   }
 );
 
-// Remove playlist
+// Remopve playlist
 app.intent("RemovePlayListIntent", {
     "slots": {
       "PlayListQuery": "VIDEOS"
@@ -798,17 +779,17 @@ app.intent("RemovePlayListIntent", {
 );
 
 // Remove playlist in Italian
-app.intent("RemovePlayListIntent", {
+app.intent("RemovePlayListItalianIntent", {
     "slots": {
       "PlayListQuery": "VIDEOS"
     },
     "utterances": [
-      "di rimuovere la playlist {-|PlayListQuery}",
+      "di rimuovere la play list {-|PlayListQuery}",
       "di rimuovere la playlist {-|PlayListQuery}"
     ]
   },
   function(req, res) {
-    lang = "it-IT;
+    lang = "it-IT";
     return remove_play_list(req, res, lang);
   }
 );
@@ -826,10 +807,10 @@ app.intent("RemoveAllPlayListIntent", {
   }
 );
 
-// Remove all playlists
-app.intent("RemoveAllPlayListIntent", {
+// Remove all playlists in Italian
+app.intent("RemoveAllPlayListItalianIntent", {
     "utterances": [
-      "di rimuovere tutte le playlist",
+      "di rimuovere tutte le play list",
       "di rimuovere tutte le playlist"
     ]
   },
@@ -852,10 +833,10 @@ app.intent("GetAllPlayListIntent", {
   }
 );
 
-// Get all playlists
-app.intent("GetAllPlayListIntent", {
+// Get all playlists in Italian
+app.intent("GetAllPlayListItalianIntent", {
     "utterances": [
-      "di mostrare tutte le playlist",
+      "di mostrare tutte le play list",
       "di mostrare tutte le playlist"
     ]
   },
