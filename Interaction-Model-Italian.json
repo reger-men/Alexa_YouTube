@@ -44,7 +44,7 @@
                     "samples": []
                 },
                 {
-                    "name": "GetVideoIntent",
+                    "name": "GetVideoItalianIntent",
                     "slots": [
                         {
                             "name": "VideoQuerys",
@@ -53,15 +53,14 @@
                     ],
                     "samples": [
                         "{VideoQuerys}",
-                        "cerca {VideoQuerys}",
                         "di cercare {VideoQuerys}",
-                        "riproduci {VideoQuerys}",
+                        "di trovare {VideoQuerys}",
                         "di riprodurre {VideoQuerys}",
                         "youtube {VideoQuerys}"
                     ]
                 },
                 {
-                    "name": "GetPlayListIntent",
+                    "name": "GetPlayListItalianIntent",
                     "slots": [
                         {
                             "name": "PlayListQuerys",
@@ -74,7 +73,7 @@
                     ]
                 },
                 {
-                    "name": "SetPlayListIntent",
+                    "name": "SetPlayListItalianIntent",
                     "slots": [
                         {
                             "name": "PlayListQuerys",
@@ -87,7 +86,7 @@
                     ]
                 },
                 {
-                    "name": "RemoveIdPlayListIntent",
+                    "name": "RemoveIdPlayListItalianIntent",
                     "slots": [],
                     "samples": [
                         "di rimuovere la canzone dalla play list",
@@ -95,7 +94,7 @@
                     ]
                 },
                 {
-                    "name": "RemovePlayListIntent",
+                    "name": "RemovePlayListItalianIntent",
                     "slots": [
                         {
                             "name": "PlayListQuerys",
@@ -108,19 +107,19 @@
                     ]
                 },
                 {
-                    "name": "RemoveAllPlayListIntent",
+                    "name": "RemoveAllPlayListItalianIntent",
                     "slots": [],
                     "samples": [
-                        "di rimuovere tutte le play lists",
-                        "di rimuovere tutte le playlists"
+                        "di rimuovere tutte le play list",
+                        "di rimuovere tutte le playlist"
                     ]
                 },
                 {
-                    "name": "GetAllPlayListIntent",
+                    "name": "GetAllPlayListItalianIntent",
                     "slots": [],
                     "samples": [
-                        "di mostrare tutte le play lists",
-                        "di mostrare tutte le playlists"
+                        "di mostrare tutte le play list",
+                        "di mostrare tutte le playlist"
                     ]
                 }
             ],
