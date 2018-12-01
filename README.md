@@ -34,4 +34,4 @@ This WebApp runs on heroku server, the corresponding source code can be found [h
   * ``` Alexa ask youtube for show all playlists```
   
   ## Notes ##
-  Please note that the aws /tmp/ folder is a non-persistent scratch area. This means that your Playlists are only temporarily stored in it. To solve that, please use an other storage service or your own server storage.
+  Please note that the aws ```/tmp/``` folder is a non-persistent scratch area. This means that your Playlists are only temporarily stored in it. To solve that, please use an other storage service or your own server storage.
