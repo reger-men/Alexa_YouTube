@@ -1,0 +1,781 @@
+2018-12-02T06:42:34.330118+00:00 app[web.1]: Usage: youtube-dl [OPTIONS] URL [URL...]
+
+2018-12-02T06:42:34.330135+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330137+00:00 app[web.1]: Options:
+
+2018-12-02T06:42:34.330138+00:00 app[web.1]:   General Options:
+
+2018-12-02T06:42:34.330140+00:00 app[web.1]:     -h, --help                       Print this help text and exit
+
+2018-12-02T06:42:34.330141+00:00 app[web.1]:     --version                        Print program version and exit
+
+2018-12-02T06:42:34.330143+00:00 app[web.1]:     -U, --update                     Update this program to latest version. Make
+
+2018-12-02T06:42:34.330144+00:00 app[web.1]:                                      sure that you have sufficient permissions
+
+2018-12-02T06:42:34.330146+00:00 app[web.1]:                                      (run with sudo if needed)
+
+2018-12-02T06:42:34.330147+00:00 app[web.1]:     -i, --ignore-errors              Continue on download errors, for example to
+
+2018-12-02T06:42:34.330149+00:00 app[web.1]:                                      skip unavailable videos in a playlist
+
+2018-12-02T06:42:34.330150+00:00 app[web.1]:     --abort-on-error                 Abort downloading of further videos (in the
+
+2018-12-02T06:42:34.330152+00:00 app[web.1]:                                      playlist or the command line) if an error
+
+2018-12-02T06:42:34.330153+00:00 app[web.1]:                                      occurs
+
+2018-12-02T06:42:34.330155+00:00 app[web.1]:     --dump-user-agent                Display the current browser identification
+
+2018-12-02T06:42:34.330156+00:00 app[web.1]:     --list-extractors                List all supported extractors
+
+2018-12-02T06:42:34.330157+00:00 app[web.1]:     --extractor-descriptions         Output descriptions of all supported
+
+2018-12-02T06:42:34.330160+00:00 app[web.1]:                                      extractors
+
+2018-12-02T06:42:34.330161+00:00 app[web.1]:     --force-generic-extractor        Force extraction to use the generic
+
+2018-12-02T06:42:34.330162+00:00 app[web.1]:                                      extractor
+
+2018-12-02T06:42:34.330163+00:00 app[web.1]:     --default-search PREFIX          Use this prefix for unqualified URLs. For
+
+2018-12-02T06:42:34.330164+00:00 app[web.1]:                                      example "gvsearch2:" downloads two videos
+
+2018-12-02T06:42:34.330165+00:00 app[web.1]:                                      from google videos for youtube-dl "large
+
+2018-12-02T06:42:34.330166+00:00 app[web.1]:                                      apple". Use the value "auto" to let
+
+2018-12-02T06:42:34.330167+00:00 app[web.1]:                                      youtube-dl guess ("auto_warning" to emit a
+
+2018-12-02T06:42:34.330168+00:00 app[web.1]:                                      warning when guessing). "error" just throws
+
+2018-12-02T06:42:34.330170+00:00 app[web.1]:                                      an error. The default value "fixup_error"
+
+2018-12-02T06:42:34.330171+00:00 app[web.1]:                                      repairs broken URLs, but emits an error if
+
+2018-12-02T06:42:34.330172+00:00 app[web.1]:                                      this is not possible instead of searching.
+
+2018-12-02T06:42:34.330173+00:00 app[web.1]:     --ignore-config                  Do not read configuration files. When given
+
+2018-12-02T06:42:34.330174+00:00 app[web.1]:                                      in the global configuration file /etc
+
+2018-12-02T06:42:34.330175+00:00 app[web.1]:                                      /youtube-dl.conf: Do not read the user
+
+2018-12-02T06:42:34.330176+00:00 app[web.1]:                                      configuration in ~/.config/youtube-
+
+2018-12-02T06:42:34.330177+00:00 app[web.1]:                                      dl/config (%APPDATA%/youtube-dl/config.txt
+
+2018-12-02T06:42:34.330178+00:00 app[web.1]:                                      on Windows)
+
+2018-12-02T06:42:34.330179+00:00 app[web.1]:     --config-location PATH           Location of the configuration file; either
+
+2018-12-02T06:42:34.330179+00:00 app[web.1]:                                      the path to the config or its containing
+
+2018-12-02T06:42:34.330180+00:00 app[web.1]:                                      directory.
+
+2018-12-02T06:42:34.330181+00:00 app[web.1]:     --flat-playlist                  Do not extract the videos of a playlist,
+
+2018-12-02T06:42:34.330182+00:00 app[web.1]:                                      only list them.
+
+2018-12-02T06:42:34.330183+00:00 app[web.1]:     --mark-watched                   Mark videos watched (YouTube only)
+
+2018-12-02T06:42:34.330184+00:00 app[web.1]:     --no-mark-watched                Do not mark videos watched (YouTube only)
+
+2018-12-02T06:42:34.330185+00:00 app[web.1]:     --no-color                       Do not emit color codes in output
+
+2018-12-02T06:42:34.330186+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330187+00:00 app[web.1]:   Network Options:
+
+2018-12-02T06:42:34.330188+00:00 app[web.1]:     --proxy URL                      Use the specified HTTP/HTTPS/SOCKS proxy.
+
+2018-12-02T06:42:34.330189+00:00 app[web.1]:                                      To enable SOCKS proxy, specify a proper
+
+2018-12-02T06:42:34.330190+00:00 app[web.1]:                                      scheme. For example
+
+2018-12-02T06:42:34.330191+00:00 app[web.1]:                                      socks5://127.0.0.1:1080/. Pass in an empty
+
+2018-12-02T06:42:34.330192+00:00 app[web.1]:                                      string (--proxy "") for direct connection
+
+2018-12-02T06:42:34.330192+00:00 app[web.1]:     --socket-timeout SECONDS         Time to wait before giving up, in seconds
+
+2018-12-02T06:42:34.330194+00:00 app[web.1]:     --source-address IP              Client-side IP address to bind to
+
+2018-12-02T06:42:34.330194+00:00 app[web.1]:     -4, --force-ipv4                 Make all connections via IPv4
+
+2018-12-02T06:42:34.330195+00:00 app[web.1]:     -6, --force-ipv6                 Make all connections via IPv6
+
+2018-12-02T06:42:34.330196+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330197+00:00 app[web.1]:   Geo Restriction:
+
+2018-12-02T06:42:34.330198+00:00 app[web.1]:     --geo-verification-proxy URL     Use this proxy to verify the IP address for
+
+2018-12-02T06:42:34.330199+00:00 app[web.1]:                                      some geo-restricted sites. The default
+
+2018-12-02T06:42:34.330200+00:00 app[web.1]:                                      proxy specified by --proxy (or none, if the
+
+2018-12-02T06:42:34.330201+00:00 app[web.1]:                                      option is not present) is used for the
+
+2018-12-02T06:42:34.330202+00:00 app[web.1]:                                      actual downloading.
+
+2018-12-02T06:42:34.330203+00:00 app[web.1]:     --geo-bypass                     Bypass geographic restriction via faking X
+
+2018-12-02T06:42:34.330204+00:00 app[web.1]:                                      -Forwarded-For HTTP header
+
+2018-12-02T06:42:34.330211+00:00 app[web.1]:     --no-geo-bypass                  Do not bypass geographic restriction via
+
+2018-12-02T06:42:34.330215+00:00 app[web.1]:                                      faking X-Forwarded-For HTTP header
+
+2018-12-02T06:42:34.330216+00:00 app[web.1]:     --geo-bypass-country CODE        Force bypass geographic restriction with
+
+2018-12-02T06:42:34.330217+00:00 app[web.1]:                                      explicitly provided two-letter ISO 3166-2
+
+2018-12-02T06:42:34.330218+00:00 app[web.1]:                                      country code
+
+2018-12-02T06:42:34.330219+00:00 app[web.1]:     --geo-bypass-ip-block IP_BLOCK   Force bypass geographic restriction with
+
+2018-12-02T06:42:34.330220+00:00 app[web.1]:                                      explicitly provided IP block in CIDR
+
+2018-12-02T06:42:34.330221+00:00 app[web.1]:                                      notation
+
+2018-12-02T06:42:34.330222+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330223+00:00 app[web.1]:   Video Selection:
+
+2018-12-02T06:42:34.330224+00:00 app[web.1]:     --playlist-start NUMBER          Playlist video to start at (default is 1)
+
+2018-12-02T06:42:34.330225+00:00 app[web.1]:     --playlist-end NUMBER            Playlist video to end at (default is last)
+
+2018-12-02T06:42:34.330226+00:00 app[web.1]:     --playlist-items ITEM_SPEC       Playlist video items to download. Specify
+
+2018-12-02T06:42:34.330227+00:00 app[web.1]:                                      indices of the videos in the playlist
+
+2018-12-02T06:42:34.330228+00:00 app[web.1]:                                      separated by commas like: "--playlist-items
+
+2018-12-02T06:42:34.330229+00:00 app[web.1]:                                      1,2,5,8" if you want to download videos
+
+2018-12-02T06:42:34.330230+00:00 app[web.1]:                                      indexed 1, 2, 5, 8 in the playlist. You can
+
+2018-12-02T06:42:34.330231+00:00 app[web.1]:                                      specify range: "--playlist-items
+
+2018-12-02T06:42:34.330231+00:00 app[web.1]:                                      1-3,7,10-13", it will download the videos
+
+2018-12-02T06:42:34.330232+00:00 app[web.1]:                                      at index 1, 2, 3, 7, 10, 11, 12 and 13.
+
+2018-12-02T06:42:34.330233+00:00 app[web.1]:     --match-title REGEX              Download only matching titles (regex or
+
+2018-12-02T06:42:34.330234+00:00 app[web.1]:                                      caseless sub-string)
+
+2018-12-02T06:42:34.330235+00:00 app[web.1]:     --reject-title REGEX             Skip download for matching titles (regex or
+
+2018-12-02T06:42:34.330236+00:00 app[web.1]:                                      caseless sub-string)
+
+2018-12-02T06:42:34.330237+00:00 app[web.1]:     --max-downloads NUMBER           Abort after downloading NUMBER files
+
+2018-12-02T06:42:34.330238+00:00 app[web.1]:     --min-filesize SIZE              Do not download any videos smaller than
+
+2018-12-02T06:42:34.330239+00:00 app[web.1]:                                      SIZE (e.g. 50k or 44.6m)
+
+2018-12-02T06:42:34.330240+00:00 app[web.1]:     --max-filesize SIZE              Do not download any videos larger than SIZE
+
+2018-12-02T06:42:34.330242+00:00 app[web.1]:                                      (e.g. 50k or 44.6m)
+
+2018-12-02T06:42:34.330242+00:00 app[web.1]:     --date DATE                      Download only videos uploaded in this date
+
+2018-12-02T06:42:34.330243+00:00 app[web.1]:     --datebefore DATE                Download only videos uploaded on or before
+
+2018-12-02T06:42:34.330245+00:00 app[web.1]:                                      this date (i.e. inclusive)
+
+2018-12-02T06:42:34.330245+00:00 app[web.1]:     --dateafter DATE                 Download only videos uploaded on or after
+
+2018-12-02T06:42:34.330246+00:00 app[web.1]:                                      this date (i.e. inclusive)
+
+2018-12-02T06:42:34.330247+00:00 app[web.1]:     --min-views COUNT                Do not download any videos with less than
+
+2018-12-02T06:42:34.330248+00:00 app[web.1]:                                      COUNT views
+
+2018-12-02T06:42:34.330249+00:00 app[web.1]:     --max-views COUNT                Do not download any videos with more than
+
+2018-12-02T06:42:34.330250+00:00 app[web.1]:                                      COUNT views
+
+2018-12-02T06:42:34.330251+00:00 app[web.1]:     --match-filter FILTER            Generic video filter. Specify any key (see
+
+2018-12-02T06:42:34.330252+00:00 app[web.1]:                                      the "OUTPUT TEMPLATE" for a list of
+
+2018-12-02T06:42:34.330253+00:00 app[web.1]:                                      available keys) to match if the key is
+
+2018-12-02T06:42:34.330254+00:00 app[web.1]:                                      present, !key to check if the key is not
+
+2018-12-02T06:42:34.330255+00:00 app[web.1]:                                      present, key > NUMBER (like "comment_count
+
+2018-12-02T06:42:34.330256+00:00 app[web.1]:                                      > 12", also works with >=, <, <=, !=, =) to
+
+2018-12-02T06:42:34.330257+00:00 app[web.1]:                                      compare against a number, key = 'LITERAL'
+
+2018-12-02T06:42:34.330258+00:00 app[web.1]:                                      (like "uploader = 'Mike Smith'", also works
+
+2018-12-02T06:42:34.330258+00:00 app[web.1]:                                      with !=) to match against a string literal
+
+2018-12-02T06:42:34.330259+00:00 app[web.1]:                                      and & to require multiple matches. Values
+
+2018-12-02T06:42:34.330260+00:00 app[web.1]:                                      which are not known are excluded unless you
+
+2018-12-02T06:42:34.330261+00:00 app[web.1]:                                      put a question mark (?) after the operator.
+
+2018-12-02T06:42:34.330262+00:00 app[web.1]:                                      For example, to only match videos that have
+
+2018-12-02T06:42:34.330263+00:00 app[web.1]:                                      been liked more than 100 times and disliked
+
+2018-12-02T06:42:34.330264+00:00 app[web.1]:                                      less than 50 times (or the dislike
+
+2018-12-02T06:42:34.330265+00:00 app[web.1]:                                      functionality is not available at the given
+
+2018-12-02T06:42:34.330266+00:00 app[web.1]:                                      service), but who also have a description,
+
+2018-12-02T06:42:34.330267+00:00 app[web.1]:                                      use --match-filter "like_count > 100 &
+
+2018-12-02T06:42:34.330268+00:00 app[web.1]:                                      dislike_count <? 50 & description" .
+
+2018-12-02T06:42:34.330271+00:00 app[web.1]:     --no-playlist                    Download only the video, if the URL refers
+
+2018-12-02T06:42:34.330272+00:00 app[web.1]:                                      to a video and a playlist.
+
+2018-12-02T06:42:34.330273+00:00 app[web.1]:     --yes-playlist                   Download the playlist, if the URL refers to
+
+2018-12-02T06:42:34.330274+00:00 app[web.1]:                                      a video and a playlist.
+
+2018-12-02T06:42:34.330275+00:00 app[web.1]:     --age-limit YEARS                Download only videos suitable for the given
+
+2018-12-02T06:42:34.330276+00:00 app[web.1]:                                      age
+
+2018-12-02T06:42:34.330277+00:00 app[web.1]:     --download-archive FILE          Download only videos not listed in the
+
+2018-12-02T06:42:34.330278+00:00 app[web.1]:                                      archive file. Record the IDs of all
+
+2018-12-02T06:42:34.330279+00:00 app[web.1]:                                      downloaded videos in it.
+
+2018-12-02T06:42:34.330280+00:00 app[web.1]:     --include-ads                    Download advertisements as well
+
+2018-12-02T06:42:34.330281+00:00 app[web.1]:                                      (experimental)
+
+2018-12-02T06:42:34.330282+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330282+00:00 app[web.1]:   Download Options:
+
+2018-12-02T06:42:34.330283+00:00 app[web.1]:     -r, --limit-rate RATE            Maximum download rate in bytes per second
+
+2018-12-02T06:42:34.330284+00:00 app[web.1]:                                      (e.g. 50K or 4.2M)
+
+2018-12-02T06:42:34.330285+00:00 app[web.1]:     -R, --retries RETRIES            Number of retries (default is 10), or
+
+2018-12-02T06:42:34.330286+00:00 app[web.1]:                                      "infinite".
+
+2018-12-02T06:42:34.330287+00:00 app[web.1]:     --fragment-retries RETRIES       Number of retries for a fragment (default
+
+2018-12-02T06:42:34.330288+00:00 app[web.1]:                                      is 10), or "infinite" (DASH, hlsnative and
+
+2018-12-02T06:42:34.330289+00:00 app[web.1]:                                      ISM)
+
+2018-12-02T06:42:34.330291+00:00 app[web.1]:     --skip-unavailable-fragments     Skip unavailable fragments (DASH, hlsnative
+
+2018-12-02T06:42:34.330292+00:00 app[web.1]:                                      and ISM)
+
+2018-12-02T06:42:34.330293+00:00 app[web.1]:     --abort-on-unavailable-fragment  Abort downloading when some fragment is not
+
+2018-12-02T06:42:34.330294+00:00 app[web.1]:                                      available
+
+2018-12-02T06:42:34.330295+00:00 app[web.1]:     --keep-fragments                 Keep downloaded fragments on disk after
+
+2018-12-02T06:42:34.330297+00:00 app[web.1]:                                      downloading is finished; fragments are
+
+2018-12-02T06:42:34.330298+00:00 app[web.1]:                                      erased by default
+
+2018-12-02T06:42:34.330300+00:00 app[web.1]:     --buffer-size SIZE               Size of download buffer (e.g. 1024 or 16K)
+
+2018-12-02T06:42:34.330301+00:00 app[web.1]:                                      (default is 1024)
+
+2018-12-02T06:42:34.330302+00:00 app[web.1]:     --no-resize-buffer               Do not automatically adjust the buffer
+
+2018-12-02T06:42:34.330303+00:00 app[web.1]:                                      size. By default, the buffer size is
+
+2018-12-02T06:42:34.330305+00:00 app[web.1]:                                      automatically resized from an initial value
+
+2018-12-02T06:42:34.330306+00:00 app[web.1]:                                      of SIZE.
+
+2018-12-02T06:42:34.330307+00:00 app[web.1]:     --http-chunk-size SIZE           Size of a chunk for chunk-based HTTP
+
+2018-12-02T06:42:34.330308+00:00 app[web.1]:                                      downloading (e.g. 10485760 or 10M) (default
+
+2018-12-02T06:42:34.330310+00:00 app[web.1]:                                      is disabled). May be useful for bypassing
+
+2018-12-02T06:42:34.330311+00:00 app[web.1]:                                      bandwidth throttling imposed by a webserver
+
+2018-12-02T06:42:34.330312+00:00 app[web.1]:                                      (experimental)
+
+2018-12-02T06:42:34.330314+00:00 app[web.1]:     --playlist-reverse               Download playlist videos in reverse order
+
+2018-12-02T06:42:34.330315+00:00 app[web.1]:     --playlist-random                Download playlist videos in random order
+
+2018-12-02T06:42:34.330316+00:00 app[web.1]:     --xattr-set-filesize             Set file xattribute ytdl.filesize with
+
+2018-12-02T06:42:34.330317+00:00 app[web.1]:                                      expected file size
+
+2018-12-02T06:42:34.330319+00:00 app[web.1]:     --hls-prefer-native              Use the native HLS downloader instead of
+
+2018-12-02T06:42:34.330320+00:00 app[web.1]:                                      ffmpeg
+
+2018-12-02T06:42:34.330321+00:00 app[web.1]:     --hls-prefer-ffmpeg              Use ffmpeg instead of the native HLS
+
+2018-12-02T06:42:34.330323+00:00 app[web.1]:                                      downloader
+
+2018-12-02T06:42:34.330324+00:00 app[web.1]:     --hls-use-mpegts                 Use the mpegts container for HLS videos,
+
+2018-12-02T06:42:34.330325+00:00 app[web.1]:                                      allowing to play the video while
+
+2018-12-02T06:42:34.330327+00:00 app[web.1]:                                      downloading (some players may not be able
+
+2018-12-02T06:42:34.330328+00:00 app[web.1]:                                      to play it)
+
+2018-12-02T06:42:34.330329+00:00 app[web.1]:     --external-downloader COMMAND    Use the specified external downloader.
+
+2018-12-02T06:42:34.330331+00:00 app[web.1]:                                      Currently supports
+
+2018-12-02T06:42:34.330332+00:00 app[web.1]:                                      aria2c,avconv,axel,curl,ffmpeg,httpie,wget
+
+2018-12-02T06:42:34.330333+00:00 app[web.1]:     --external-downloader-args ARGS  Give these arguments to the external
+
+2018-12-02T06:42:34.330335+00:00 app[web.1]:                                      downloader
+
+2018-12-02T06:42:34.330336+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330337+00:00 app[web.1]:   Filesystem Options:
+
+2018-12-02T06:42:34.330338+00:00 app[web.1]:     -a, --batch-file FILE            File containing URLs to download ('-' for
+
+2018-12-02T06:42:34.330339+00:00 app[web.1]:                                      stdin), one URL per line. Lines starting
+
+2018-12-02T06:42:34.330340+00:00 app[web.1]:                                      with '#', ';' or ']' are considered as
+
+2018-12-02T06:42:34.330341+00:00 app[web.1]:                                      comments and ignored.
+
+2018-12-02T06:42:34.330342+00:00 app[web.1]:     --id                             Use only video ID in file name
+
+2018-12-02T06:42:34.330343+00:00 app[web.1]:     -o, --output TEMPLATE            Output filename template, see the "OUTPUT
+
+2018-12-02T06:42:34.330348+00:00 app[web.1]:                                      TEMPLATE" for all the info
+
+2018-12-02T06:42:34.330349+00:00 app[web.1]:     --autonumber-start NUMBER        Specify the start value for %(autonumber)s
+
+2018-12-02T06:42:34.330350+00:00 app[web.1]:                                      (default is 1)
+
+2018-12-02T06:42:34.330351+00:00 app[web.1]:     --restrict-filenames             Restrict filenames to only ASCII
+
+2018-12-02T06:42:34.330352+00:00 app[web.1]:                                      characters, and avoid "&" and spaces in
+
+2018-12-02T06:42:34.330353+00:00 app[web.1]:                                      filenames
+
+2018-12-02T06:42:34.330355+00:00 app[web.1]:     -w, --no-overwrites              Do not overwrite files
+
+2018-12-02T06:42:34.330356+00:00 app[web.1]:     -c, --continue                   Force resume of partially downloaded files.
+
+2018-12-02T06:42:34.330357+00:00 app[web.1]:                                      By default, youtube-dl will resume
+
+2018-12-02T06:42:34.330358+00:00 app[web.1]:                                      downloads if possible.
+
+2018-12-02T06:42:34.330359+00:00 app[web.1]:     --no-continue                    Do not resume partially downloaded files
+
+2018-12-02T06:42:34.330360+00:00 app[web.1]:                                      (restart from beginning)
+
+2018-12-02T06:42:34.330361+00:00 app[web.1]:     --no-part                        Do not use .part files - write directly
+
+2018-12-02T06:42:34.330362+00:00 app[web.1]:                                      into output file
+
+2018-12-02T06:42:34.330363+00:00 app[web.1]:     --no-mtime                       Do not use the Last-modified header to set
+
+2018-12-02T06:42:34.330364+00:00 app[web.1]:                                      the file modification time
+
+2018-12-02T06:42:34.330365+00:00 app[web.1]:     --write-description              Write video description to a .description
+
+2018-12-02T06:42:34.330366+00:00 app[web.1]:                                      file
+
+2018-12-02T06:42:34.330367+00:00 app[web.1]:     --write-info-json                Write video metadata to a .info.json file
+
+2018-12-02T06:42:34.330368+00:00 app[web.1]:     --write-annotations              Write video annotations to a
+
+2018-12-02T06:42:34.330369+00:00 app[web.1]:                                      .annotations.xml file
+
+2018-12-02T06:42:34.330369+00:00 app[web.1]:     --load-info-json FILE            JSON file containing the video information
+
+2018-12-02T06:42:34.330370+00:00 app[web.1]:                                      (created with the "--write-info-json"
+
+2018-12-02T06:42:34.330371+00:00 app[web.1]:                                      option)
+
+2018-12-02T06:42:34.330372+00:00 app[web.1]:     --cookies FILE                   File to read cookies from and dump cookie
+
+2018-12-02T06:42:34.330373+00:00 app[web.1]:                                      jar in
+
+2018-12-02T06:42:34.330374+00:00 app[web.1]:     --cache-dir DIR                  Location in the filesystem where youtube-dl
+
+2018-12-02T06:42:34.330375+00:00 app[web.1]:                                      can store some downloaded information
+
+2018-12-02T06:42:34.330376+00:00 app[web.1]:                                      permanently. By default $XDG_CACHE_HOME
+
+2018-12-02T06:42:34.330377+00:00 app[web.1]:                                      /youtube-dl or ~/.cache/youtube-dl . At the
+
+2018-12-02T06:42:34.330378+00:00 app[web.1]:                                      moment, only YouTube player files (for
+
+2018-12-02T06:42:34.330379+00:00 app[web.1]:                                      videos with obfuscated signatures) are
+
+2018-12-02T06:42:34.330380+00:00 app[web.1]:                                      cached, but that may change.
+
+2018-12-02T06:42:34.330381+00:00 app[web.1]:     --no-cache-dir                   Disable filesystem caching
+
+2018-12-02T06:42:34.330382+00:00 app[web.1]:     --rm-cache-dir                   Delete all filesystem cache files
+
+2018-12-02T06:42:34.330383+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330384+00:00 app[web.1]:   Thumbnail images:
+
+2018-12-02T06:42:34.330384+00:00 app[web.1]:     --write-thumbnail                Write thumbnail image to disk
+
+2018-12-02T06:42:34.330386+00:00 app[web.1]:     --write-all-thumbnails           Write all thumbnail image formats to disk
+
+2018-12-02T06:42:34.330387+00:00 app[web.1]:     --list-thumbnails                Simulate and list all available thumbnail
+
+2018-12-02T06:42:34.330388+00:00 app[web.1]:                                      formats
+
+2018-12-02T06:42:34.330389+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330390+00:00 app[web.1]:   Verbosity / Simulation Options:
+
+2018-12-02T06:42:34.330391+00:00 app[web.1]:     -q, --quiet                      Activate quiet mode
+
+2018-12-02T06:42:34.330392+00:00 app[web.1]:     --no-warnings                    Ignore warnings
+
+2018-12-02T06:42:34.330393+00:00 app[web.1]:     -s, --simulate                   Do not download the video and do not write
+
+2018-12-02T06:42:34.330394+00:00 app[web.1]:                                      anything to disk
+
+2018-12-02T06:42:34.330395+00:00 app[web.1]:     --skip-download                  Do not download the video
+
+2018-12-02T06:42:34.330396+00:00 app[web.1]:     -g, --get-url                    Simulate, quiet but print URL
+
+2018-12-02T06:42:34.330397+00:00 app[web.1]:     -e, --get-title                  Simulate, quiet but print title
+
+2018-12-02T06:42:34.330398+00:00 app[web.1]:     --get-id                         Simulate, quiet but print id
+
+2018-12-02T06:42:34.330399+00:00 app[web.1]:     --get-thumbnail                  Simulate, quiet but print thumbnail URL
+
+2018-12-02T06:42:34.330400+00:00 app[web.1]:     --get-description                Simulate, quiet but print video description
+
+2018-12-02T06:42:34.330401+00:00 app[web.1]:     --get-duration                   Simulate, quiet but print video length
+
+2018-12-02T06:42:34.330401+00:00 app[web.1]:     --get-filename                   Simulate, quiet but print output filename
+
+2018-12-02T06:42:34.330402+00:00 app[web.1]:     --get-format                     Simulate, quiet but print output format
+
+2018-12-02T06:42:34.330403+00:00 app[web.1]:     -j, --dump-json                  Simulate, quiet but print JSON information.
+
+2018-12-02T06:42:34.330404+00:00 app[web.1]:                                      See the "OUTPUT TEMPLATE" for a description
+
+2018-12-02T06:42:34.330405+00:00 app[web.1]:                                      of available keys.
+
+2018-12-02T06:42:34.330406+00:00 app[web.1]:     -J, --dump-single-json           Simulate, quiet but print JSON information
+
+2018-12-02T06:42:34.330407+00:00 app[web.1]:                                      for each command-line argument. If the URL
+
+2018-12-02T06:42:34.330408+00:00 app[web.1]:                                      refers to a playlist, dump the whole
+
+2018-12-02T06:42:34.330411+00:00 app[web.1]:                                      playlist information in a single line.
+
+2018-12-02T06:42:34.330412+00:00 app[web.1]:     --print-json                     Be quiet and print the video information as
+
+2018-12-02T06:42:34.330413+00:00 app[web.1]:                                      JSON (video is still being downloaded).
+
+2018-12-02T06:42:34.330414+00:00 app[web.1]:     --newline                        Output progress bar as new lines
+
+2018-12-02T06:42:34.330414+00:00 app[web.1]:     --no-progress                    Do not print progress bar
+
+2018-12-02T06:42:34.330415+00:00 app[web.1]:     --console-title                  Display progress in console titlebar
+
+2018-12-02T06:42:34.330416+00:00 app[web.1]:     -v, --verbose                    Print various debugging information
+
+2018-12-02T06:42:34.330417+00:00 app[web.1]:     --dump-pages                     Print downloaded pages encoded using base64
+
+2018-12-02T06:42:34.330418+00:00 app[web.1]:                                      to debug problems (very verbose)
+
+2018-12-02T06:42:34.330419+00:00 app[web.1]:     --write-pages                    Write downloaded intermediary pages to
+
+2018-12-02T06:42:34.330420+00:00 app[web.1]:                                      files in the current directory to debug
+
+2018-12-02T06:42:34.330421+00:00 app[web.1]:                                      problems
+
+2018-12-02T06:42:34.330422+00:00 app[web.1]:     --print-traffic                  Display sent and read HTTP traffic
+
+2018-12-02T06:42:34.330423+00:00 app[web.1]:     -C, --call-home                  Contact the youtube-dl server for debugging
+
+2018-12-02T06:42:34.330424+00:00 app[web.1]:     --no-call-home                   Do NOT contact the youtube-dl server for
+
+2018-12-02T06:42:34.330425+00:00 app[web.1]:                                      debugging
+
+2018-12-02T06:42:34.330426+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330427+00:00 app[web.1]:   Workarounds:
+
+2018-12-02T06:42:34.330428+00:00 app[web.1]:     --encoding ENCODING              Force the specified encoding (experimental)
+
+2018-12-02T06:42:34.330429+00:00 app[web.1]:     --no-check-certificate           Suppress HTTPS certificate validation
+
+2018-12-02T06:42:34.330430+00:00 app[web.1]:     --prefer-insecure                Use an unencrypted connection to retrieve
+
+2018-12-02T06:42:34.330431+00:00 app[web.1]:                                      information about the video. (Currently
+
+2018-12-02T06:42:34.330432+00:00 app[web.1]:                                      supported only for YouTube)
+
+2018-12-02T06:42:34.330433+00:00 app[web.1]:     --user-agent UA                  Specify a custom user agent
+
+2018-12-02T06:42:34.330434+00:00 app[web.1]:     --referer URL                    Specify a custom referer, use if the video
+
+2018-12-02T06:42:34.330435+00:00 app[web.1]:                                      access is restricted to one domain
+
+2018-12-02T06:42:34.330436+00:00 app[web.1]:     --add-header FIELD:VALUE         Specify a custom HTTP header and its value,
+
+2018-12-02T06:42:34.330436+00:00 app[web.1]:                                      separated by a colon ':'. You can use this
+
+2018-12-02T06:42:34.330437+00:00 app[web.1]:                                      option multiple times
+
+2018-12-02T06:42:34.330438+00:00 app[web.1]:     --bidi-workaround                Work around terminals that lack
+
+2018-12-02T06:42:34.330439+00:00 app[web.1]:                                      bidirectional text support. Requires bidiv
+
+2018-12-02T06:42:34.330440+00:00 app[web.1]:                                      or fribidi executable in PATH
+
+2018-12-02T06:42:34.330441+00:00 app[web.1]:     --sleep-interval SECONDS         Number of seconds to sleep before each
+
+2018-12-02T06:42:34.330442+00:00 app[web.1]:                                      download when used alone or a lower bound
+
+2018-12-02T06:42:34.330454+00:00 app[web.1]:                                      of a range for randomized sleep before each
+
+2018-12-02T06:42:34.330455+00:00 app[web.1]:                                      download (minimum possible number of
+
+2018-12-02T06:42:34.330456+00:00 app[web.1]:                                      seconds to sleep) when used along with
+
+2018-12-02T06:42:34.330457+00:00 app[web.1]:                                      --max-sleep-interval.
+
+2018-12-02T06:42:34.330458+00:00 app[web.1]:     --max-sleep-interval SECONDS     Upper bound of a range for randomized sleep
+
+2018-12-02T06:42:34.330459+00:00 app[web.1]:                                      before each download (maximum possible
+
+2018-12-02T06:42:34.330460+00:00 app[web.1]:                                      number of seconds to sleep). Must only be
+
+2018-12-02T06:42:34.330461+00:00 app[web.1]:                                      used along with --min-sleep-interval.
+
+2018-12-02T06:42:34.330462+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330463+00:00 app[web.1]:   Video Format Options:
+
+2018-12-02T06:42:34.330464+00:00 app[web.1]:     -f, --format FORMAT              Video format code, see the "FORMAT
+
+2018-12-02T06:42:34.330465+00:00 app[web.1]:                                      SELECTION" for all the info
+
+2018-12-02T06:42:34.330466+00:00 app[web.1]:     --all-formats                    Download all available video formats
+
+2018-12-02T06:42:34.330467+00:00 app[web.1]:     --prefer-free-formats            Prefer free video formats unless a specific
+
+2018-12-02T06:42:34.330468+00:00 app[web.1]:                                      one is requested
+
+2018-12-02T06:42:34.330469+00:00 app[web.1]:     -F, --list-formats               List all available formats of requested
+
+2018-12-02T06:42:34.330470+00:00 app[web.1]:                                      videos
+
+2018-12-02T06:42:34.330471+00:00 app[web.1]:     --youtube-skip-dash-manifest     Do not download the DASH manifests and
+
+2018-12-02T06:42:34.330472+00:00 app[web.1]:                                      related data on YouTube videos
+
+2018-12-02T06:42:34.330473+00:00 app[web.1]:     --merge-output-format FORMAT     If a merge is required (e.g.
+
+2018-12-02T06:42:34.330474+00:00 app[web.1]:                                      bestvideo+bestaudio), output to given
+
+2018-12-02T06:42:34.330475+00:00 app[web.1]:                                      container format. One of mkv, mp4, ogg,
+
+2018-12-02T06:42:34.330477+00:00 app[web.1]:                                      webm, flv. Ignored if no merge is required
+
+2018-12-02T06:42:34.330478+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330480+00:00 app[web.1]:   Subtitle Options:
+
+2018-12-02T06:42:34.330481+00:00 app[web.1]:     --write-sub                      Write subtitle file
+
+2018-12-02T06:42:34.330482+00:00 app[web.1]:     --write-auto-sub                 Write automatically generated subtitle file
+
+2018-12-02T06:42:34.330484+00:00 app[web.1]:                                      (YouTube only)
+
+2018-12-02T06:42:34.330490+00:00 app[web.1]:     --all-subs                       Download all the available subtitles of the
+
+2018-12-02T06:42:34.330491+00:00 app[web.1]:                                      video
+
+2018-12-02T06:42:34.330492+00:00 app[web.1]:     --list-subs                      List all available subtitles for the video
+
+2018-12-02T06:42:34.330494+00:00 app[web.1]:     --sub-format FORMAT              Subtitle format, accepts formats
+
+2018-12-02T06:42:34.330495+00:00 app[web.1]:                                      preference, for example: "srt" or
+
+2018-12-02T06:42:34.330496+00:00 app[web.1]:                                      "ass/srt/best"
+
+2018-12-02T06:42:34.330497+00:00 app[web.1]:     --sub-lang LANGS                 Languages of the subtitles to download
+
+2018-12-02T06:42:34.330499+00:00 app[web.1]:                                      (optional) separated by commas, use --list-
+
+2018-12-02T06:42:34.330500+00:00 app[web.1]:                                      subs for available language tags
+
+2018-12-02T06:42:34.330501+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330502+00:00 app[web.1]:   Authentication Options:
+
+2018-12-02T06:42:34.330504+00:00 app[web.1]:     -u, --username USERNAME          Login with this account ID
+
+2018-12-02T06:42:34.330505+00:00 app[web.1]:     -p, --password PASSWORD          Account password. If this option is left
+
+2018-12-02T06:42:34.330506+00:00 app[web.1]:                                      out, youtube-dl will ask interactively.
+
+2018-12-02T06:42:34.330508+00:00 app[web.1]:     -2, --twofactor TWOFACTOR        Two-factor authentication code
+
+2018-12-02T06:42:34.330509+00:00 app[web.1]:     -n, --netrc                      Use .netrc authentication data
+
+2018-12-02T06:42:34.330510+00:00 app[web.1]:     --video-password PASSWORD        Video password (vimeo, smotri, youku)
+
+2018-12-02T06:42:34.330511+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330513+00:00 app[web.1]:   Adobe Pass Options:
+
+2018-12-02T06:42:34.330514+00:00 app[web.1]:     --ap-mso MSO                     Adobe Pass multiple-system operator (TV
+
+2018-12-02T06:42:34.330515+00:00 app[web.1]:                                      provider) identifier, use --ap-list-mso for
+
+2018-12-02T06:42:34.330516+00:00 app[web.1]:                                      a list of available MSOs
+
+2018-12-02T06:42:34.330518+00:00 app[web.1]:     --ap-username USERNAME           Multiple-system operator account login
+
+2018-12-02T06:42:34.330519+00:00 app[web.1]:     --ap-password PASSWORD           Multiple-system operator account password.
+
+2018-12-02T06:42:34.330521+00:00 app[web.1]:                                      If this option is left out, youtube-dl will
+
+2018-12-02T06:42:34.330523+00:00 app[web.1]:                                      ask interactively.
+
+2018-12-02T06:42:34.330524+00:00 app[web.1]:     --ap-list-mso                    List all supported multiple-system
+
+2018-12-02T06:42:34.330525+00:00 app[web.1]:                                      operators
+
+2018-12-02T06:42:34.330526+00:00 app[web.1]: 
+
+2018-12-02T06:42:34.330527+00:00 app[web.1]:   Post-processing Options:
+
+2018-12-02T06:42:34.330528+00:00 app[web.1]:     -x, --extract-audio              Convert video files to audio-only files
+
+2018-12-02T06:42:34.330529+00:00 app[web.1]:                                      (requires ffmpeg or avconv and ffprobe or
+
+2018-12-02T06:42:34.330530+00:00 app[web.1]:                                      avprobe)
+
+2018-12-02T06:42:34.330531+00:00 app[web.1]:     --audio-format FORMAT            Specify audio format: "best", "aac",
+
+2018-12-02T06:42:34.330532+00:00 app[web.1]:                                      "flac", "mp3", "m4a", "opus", "vorbis", or
+
+2018-12-02T06:42:34.330533+00:00 app[web.1]:                                      "wav"; "best" by default; No effect without
+
+2018-12-02T06:42:34.330534+00:00 app[web.1]:                                      -x
+
+2018-12-02T06:42:34.330535+00:00 app[web.1]:     --audio-quality QUALITY          Specify ffmpeg/avconv audio quality, insert
+
+2018-12-02T06:42:34.330536+00:00 app[web.1]:                                      a value between 0 (better) and 9 (worse)
+
+2018-12-02T06:42:34.330537+00:00 app[web.1]:                                      for VBR or a specific bitrate like 128K
+
+2018-12-02T06:42:34.330539+00:00 app[web.1]:                                      (default 5)
+
+2018-12-02T06:42:34.330539+00:00 app[web.1]:     --recode-video FORMAT            Encode the video to another format if
+
+2018-12-02T06:42:34.330540+00:00 app[web.1]:                                      necessary (currently supported:
+
+2018-12-02T06:42:34.330542+00:00 app[web.1]:                                      mp4|flv|ogg|webm|mkv|avi)
+
+2018-12-02T06:42:34.330543+00:00 app[web.1]:     --postprocessor-args ARGS        Give these arguments to the postprocessor
+
+2018-12-02T06:42:34.330543+00:00 app[web.1]:     -k, --keep-video                 Keep the video file on disk after the post-
+
+2018-12-02T06:42:34.330544+00:00 app[web.1]:                                      processing; the video is erased by default
+
+2018-12-02T06:42:34.330545+00:00 app[web.1]:     --no-post-overwrites             Do not overwrite post-processed files; the
+
+2018-12-02T06:42:34.330546+00:00 app[web.1]:                                      post-processed files are overwritten by
+
+2018-12-02T06:42:34.330547+00:00 app[web.1]:                                      default
+
+2018-12-02T06:42:34.330548+00:00 app[web.1]:     --embed-subs                     Embed subtitles in the video (only for mp4,
+
+2018-12-02T06:42:34.330549+00:00 app[web.1]:                                      webm and mkv videos)
+
+2018-12-02T06:42:34.330550+00:00 app[web.1]:     --embed-thumbnail                Embed thumbnail in the audio as cover art
+
+2018-12-02T06:42:34.330551+00:00 app[web.1]:     --add-metadata                   Write metadata to the video file
+
+2018-12-02T06:42:34.330552+00:00 app[web.1]:     --metadata-from-title FORMAT     Parse additional metadata like song title /
+
+2018-12-02T06:42:34.330553+00:00 app[web.1]:                                      artist from the video title. The format
+
+2018-12-02T06:42:34.330554+00:00 app[web.1]:                                      syntax is the same as --output. Regular
+
+2018-12-02T06:42:34.330555+00:00 app[web.1]:                                      expression with named capture groups may
+
+2018-12-02T06:42:34.330556+00:00 app[web.1]:                                      also be used. The parsed parameters replace
+
+2018-12-02T06:42:34.330557+00:00 app[web.1]:                                      existing values. Example: --metadata-from-
+
+2018-12-02T06:42:34.330558+00:00 app[web.1]:                                      title "%(artist)s - %(title)s" matches a
+
+2018-12-02T06:42:34.330559+00:00 app[web.1]:                                      title like "Coldplay - Paradise". Example
+
+2018-12-02T06:42:34.330563+00:00 app[web.1]:                                      (regex): --metadata-from-title
+
+2018-12-02T06:42:34.330564+00:00 app[web.1]:                                      "(?P<artist>.+?) - (?P<title>.+)"
+
+2018-12-02T06:42:34.330565+00:00 app[web.1]:     --xattrs                         Write metadata to the video file's xattrs
+
+2018-12-02T06:42:34.330566+00:00 app[web.1]:                                      (using dublin core and xdg standards)
+
+2018-12-02T06:42:34.330567+00:00 app[web.1]:     --fixup POLICY                   Automatically correct known faults of the
+
+2018-12-02T06:42:34.330568+00:00 app[web.1]:                                      file. One of never (do nothing), warn (only
+
+2018-12-02T06:42:34.330569+00:00 app[web.1]:                                      emit a warning), detect_or_warn (the
+
+2018-12-02T06:42:34.330570+00:00 app[web.1]:                                      default; fix file if we can, warn
+
+2018-12-02T06:42:34.330571+00:00 app[web.1]:                                      otherwise)
+
+2018-12-02T06:42:34.330572+00:00 app[web.1]:     --prefer-avconv                  Prefer avconv over ffmpeg for running the
+
+2018-12-02T06:42:34.330573+00:00 app[web.1]:                                      postprocessors
+
+2018-12-02T06:42:34.330574+00:00 app[web.1]:     --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the
+
+2018-12-02T06:42:34.330575+00:00 app[web.1]:                                      postprocessors (default)
+
+2018-12-02T06:42:34.330576+00:00 app[web.1]:     --ffmpeg-location PATH           Location of the ffmpeg/avconv binary;
+
+2018-12-02T06:42:34.330576+00:00 app[web.1]:                                      either the path to the binary or its
+
+2018-12-02T06:42:34.330577+00:00 app[web.1]:                                      containing directory.
+
+2018-12-02T06:42:34.330578+00:00 app[web.1]:     --exec CMD                       Execute a command on the file after
+
+2018-12-02T06:42:34.330579+00:00 app[web.1]:                                      downloading, similar to find's -exec
+
+2018-12-02T06:42:34.330580+00:00 app[web.1]:                                      syntax. Example: --exec 'adb push {}
+
+2018-12-02T06:42:34.330581+00:00 app[web.1]:                                      /sdcard/Music/ && rm {}'
+
+2018-12-02T06:42:34.330582+00:00 app[web.1]:     --convert-subs FORMAT            Convert the subtitles to other format
+
+2018-12-02T06:42:34.330583+00:00 app[web.1]:                                      (currently supported: srt|ass|vtt|lrc)
