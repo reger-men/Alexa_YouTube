@@ -25,6 +25,7 @@ var request = require("request");
 var ssml = require("ssml-builder");
 var response_messages = require("./responses");
 
+
 var StorePath = '/tmp/PlayList_'; /*NOTE: /tmp/ folder in AWS is an non-persistent scratch area.*/
 var PlayListPath = '';
 var PlayListTitles = [];
@@ -41,6 +42,7 @@ var heroku = process.env.HEROKU_APP_URL || "https://youtube-alexa.herokuapp.com"
 var metadata = null;
 var last_search = null;
 var is_play_list = false;
+var play_on = false;
 var last_token = null;
 var last_playback = {};
 var lang = "en-US";
@@ -91,19 +93,20 @@ function has_playList() {
  * @param  {Number} offset How many milliseconds from the video start to begin at
  */
 function restart_video(res, offset) {
-    // Generate new token
-    last_token = uuidv4();
+  // Generate new token
+  last_token = uuidv4();
 
-    // Replay the last searched audio back into Alexa
-    res.audioPlayerPlayStream("REPLACE_ALL", {
-      url: last_search,
-      streamFormat: "AUDIO_MPEG",
-      token: last_token,
-      offsetInMilliseconds: offset
-    });
+  // Replay the last searched audio back into Alexa
+  var stream = {
+    "url": last_search, //"https://mp3channels.webradio.antenne.de/antenne", 
+    "streamFormat": "AUDIO_MPEG",
+    "token": last_token,
+    "offsetInMilliseconds": offset
+  };
+  res.audioPlayerPlayStream("REPLACE_ALL", stream);
 
-    // Record playback start time
-    last_playback.start = new Date().getTime();
+  // Record playback start time
+  last_playback.start = new Date().getTime();
 }
 
 /**
@@ -214,7 +217,7 @@ function get_video(query, res, lang){
       if (lang === "de-DE") {
         search += "?language=de";
       }
-      
+        
       // Make request to download server
       request(search, function(err, res, body) {
         if (err) {
@@ -237,11 +240,13 @@ function get_video(query, res, lang){
             last_search = heroku + body_json.link;
             last_token = uuidv4();
   
+            play_on = true;
+            
             console.log("YouTube URL: " + metadata.original);
-  
+            
             wait_for_video(metadata.id, function() {
               console.log("Audio URL: " + last_search);
-  
+              
               // Return audio URL from request to promise
               resolve({
                 message: response_messages[lang]["NOW_PLAYING"].formatUnicorn(metadata.title),
@@ -288,6 +293,7 @@ function wait_for_video(id, callback) {
   setTimeout(function() {
     request(heroku + "/alexa-check/" + id, function(err, res, body) {
       if (!err) {
+        console.log("JSON: ", body);
         var body_json = JSON.parse(body);
         if (body_json.downloaded) {
           callback();
@@ -352,36 +358,6 @@ function play_prev(req, res, lang){
   set_playList_Array(CurrentPlayList);
   var title = get_prev_title();
   return get_video(title, res, lang);
-}
-
-/**
- * Play the next Song of the current Playlist
- *
- * @param  {Object} req  A request from an Alexa device
- * @param  {Object} res  A response that will be sent to the device
- * @param  {String} lang The language of the query
- * @return {Promise} Execution of the request
- */
-function play_list_next(req, res, offset) {
-    // Generate new token
-    last_token = uuidv4();
-
-    set_playList_Array(CurrentPlayList);
-    var title = get_next_title();
-    get_video(title, res, lang);
-  
-    last_search = heroku + '/site/' + title + '.m4a';
-    
-    // Replay the last searched audio back into Alexa
-    res.audioPlayerPlayStream("REPLACE_ALL", {
-      url: last_search,
-      streamFormat: "AUDIO_MPEG",
-      token: last_token,
-      offsetInMilliseconds: offset
-    });
-
-    // Record playback start time
-    last_playback.start = new Date().getTime();
 }
 
 /**
@@ -671,6 +647,20 @@ app.intent("GetPlayListIntent", {
     ]
   },
   function(req, res) {
+    lang = "en-US";
+    return play_list(req, res, lang);
+  }
+);
+
+app.intent("GetPlayListGermanIntent", {
+    "slots": {
+      "PlayListQuery": "VIDEOS"
+    },
+    "utterances": [
+      "play list {-|PlayListQuery}"
+    ]
+  },
+  function(req, res) {
     lang = "de-DE";
     return play_list(req, res, lang);
   }
@@ -784,9 +774,34 @@ app.audioPlayer("PlaybackNearlyFinished", function(req, res) {
   
       // Send response to Alexa device
       res.send();
-    }
-    if(has_playList()){ /* Play next song if Playlist */
-      play_list_next(req, res, 0);
+    }else if(has_playList() && play_on){ /* Play next song if Playlist */
+      // Generate new token for the stream
+      new_token = uuidv4();
+      
+      set_playList_Array(CurrentPlayList);
+      var title = get_next_title();
+      last_search = heroku + '/site/' + title + '.mp3';
+      
+      // Inject the audio that was just playing back into Alexa
+      res.audioPlayerPlayStream("ENQUEUE", {
+        url: last_search,
+        streamFormat: "AUDIO_MPEG",
+        token: new_token,
+        expectedPreviousToken: last_token,
+        offsetInMilliseconds: 0
+      });
+  
+      // Set last token to new token
+      last_token = new_token;
+  
+      // Record playback start time
+      last_playback.start = new Date().getTime();
+  
+      // We repeated the video, so singular repeat is set to false
+      repeat_once = false;
+      
+      // Send response to Alexa device
+      res.send();
     }
   } else {
     // Token is set to null because playback is done
