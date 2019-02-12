@@ -42,7 +42,6 @@ var heroku = process.env.HEROKU_APP_URL || "https://youtube-alexa.herokuapp.com"
 var metadata = null;
 var last_search = null;
 var is_play_list = false;
-var play_on = false;
 var last_token = null;
 var last_playback = {};
 var lang = "en-US";
@@ -239,8 +238,6 @@ function get_video(query, res, lang){
             metadata = body_json.info;
             last_search = heroku + body_json.link;
             last_token = uuidv4();
-  
-            play_on = true;
             
             console.log("YouTube URL: " + metadata.original);
             
@@ -774,7 +771,7 @@ app.audioPlayer("PlaybackNearlyFinished", function(req, res) {
   
       // Send response to Alexa device
       res.send();
-    }else if(has_playList() && play_on){ /* Play next song if Playlist */
+    }else if(has_playList()){ /* Play next song if Playlist */
       // Generate new token for the stream
       new_token = uuidv4();
       
