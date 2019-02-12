@@ -195,6 +195,7 @@ function getSingleVideo(req, res, lang) {
     res.say(response_messages[req.data.request.locale]["NO_QUERY_DEFINED"]).send();
   
   }else{
+    is_play_list = false;
     return get_video(query, res, lang);
   }
 }
@@ -239,9 +240,6 @@ function get_video(query, res, lang){
             last_search = heroku + body_json.link;
             last_token = uuidv4();
             
-            
-            is_play_list = false;
-    
             console.log("YouTube URL: " + metadata.original);
             
             wait_for_video(metadata.id, function() {
