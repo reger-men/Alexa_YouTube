@@ -59,7 +59,7 @@
                     ]
                 },
                 {
-                    "name": "GetPlayListIntent",
+                    "name": "GetPlayListGermanIntent",
                     "slots": [
                         {
                             "name": "PlayListQuerys",
