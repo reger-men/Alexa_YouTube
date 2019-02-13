@@ -1,0 +1,24 @@
+{
+  "name": "alexa-youtube-skill",
+  "version": "2.0.5",
+  "description": "Alexa devices can search YouTube for audio now!",
+  "engines": {
+    "node": "6.1.0"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "alexa-app": "4.2.3",
+    "request": "2.88.0",
+    "ssml-builder": "0.4.3",
+    "ffmpeg": "0.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reger-men/YoutubeAPI"
+  },
+  "keywords": [
+    "alexa",
+    "youtube"
+  ],
+  "license": "MIT"
+}
