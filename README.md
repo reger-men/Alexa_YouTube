@@ -24,13 +24,13 @@ This WebApp runs on a private server, the corresponding source code can be found
 ## Set your language ## 
 Currently this skill supports the 4 languages **en-US, de-DE, fr-FR, it-IT**
 
-Set the language you want to use in ```var lang = "en-US"; ``` into ``` index.js ```
+Set the language you want to use in ```var lang = "en-US";``` into ``` index.js```
 
 ## Expand with your language ## 
-The new release make it easy to expand any language you want without changing the source code in ``` index.js ```. Following are the steps you should take:
+The new release make it easy to expand any language you want without changing the source code in ``` index.js```. Following are the steps you should take:
 1. Copy one of the existing interaction models file and replace the intent with your language (you need to compile your model)
-2. insert your language block into ``` responses.js ``` 
-3. set your language in ``` index.js ``` ``` var lang = "en-US";``` 
+2. insert your language block into ``` responses.js``` 
+3. set your language in ``` index.js``` ``` var lang = "en-US";``` 
 
 ## Commands examples ## 
 * To play song with title {title}
