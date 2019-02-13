@@ -44,7 +44,7 @@ var last_search = null;
 var is_play_list = false;
 var last_token = null;
 var last_playback = {};
-var lang = "it-IT";  // TO DEFINE: Valid entry en-US, de-DE, fr-FR, it-IT
+var lang = "en-US";  // TO DEFINE: Valid entry en-US, de-DE, fr-FR, it-IT
 
 // Current song is repeating
 var repeat_infinitely = false;
