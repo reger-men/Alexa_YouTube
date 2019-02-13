@@ -26,7 +26,7 @@ Currently this skill supports the 4 languages **en-US, de-DE, fr-FR, it-IT**
 
 Set the language you want to use in ```var lang = "en-US"; ``` into ``` index.js ```
 
-## expand with your language ## 
+## Expand with your language ## 
 The new release make it easy to expand any language you want without changing the source code in ``` index.js ```. Following are the steps you should take:
 1. Copy one of the existing interaction models file and replace the intent with your language (you need to compile your model)
 2. insert your language block into ``` responses.js ``` 
@@ -46,6 +46,11 @@ The new release make it easy to expand any language you want without changing th
 * To get all playlists back
   * ``` Alexa ask youtube for show all playlists```
   
-  ## Notes ##
-  Please note that the aws ```/tmp/``` folder is a non-persistent scratch area. This means that your Playlists are only temporarily stored in it. To solve that, please use an other storage service or your own server storage.
+## Development Links ##
+[Alexa Developer Console](https://developer.amazon.com/alexa/console/ask)
+
+[AWS Lambda](https://eu-west-1.console.aws.amazon.com/lambda)
+
+## Notes ##
+Please note that the aws ```/tmp/``` folder is a non-persistent scratch area. This means that your Playlists are only temporarily stored in it. To solve that, please use an other storage service or your own server storage.
 This repository is based off of an original skill done by David Hacker: [here](https://github.com/dmhacker/alexa-youtube-skill)
