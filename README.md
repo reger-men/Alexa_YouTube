@@ -7,7 +7,7 @@ Alexa_YouTube skill makes it easy to play music and playlist from YouTube.
 
 [![Alt text](https://img.youtube.com/vi/xr8Mt6yWTBg/0.jpg)](https://www.youtube.com/watch?v=xr8Mt6yWTBg)
 
-## features ##
+## Features ##
 User ...
 * ... doesn't need a YouTube account to groove this skill
 * ... doesn't have to wait until video is completely downloaded
@@ -20,6 +20,17 @@ User ...
 Youtube API: This skills need Youtube PI service to access on Videos on Youtube for this purpose, the web app https://youtube-alexa.herokuapp.com/ was created. Of course you can also use other services or create new one. 
 
 This WebApp runs on a private server, the corresponding source code can be found [here](https://github.com/reger-men/YoutubeAPI)
+
+## Set your language ## 
+Currently this skill supports the 4 languages **en-US, de-DE, fr-FR, it-IT**
+
+Set the language you want to use in ```var lang = "en-US"; ``` into ``` index.js ```
+
+## expand with your language ## 
+The new release make it easy to expand any language you want without changing the source code in ``` index.js ```. Following are the steps you should take:
+1. Copy one of the existing interaction models file and replace the intent with your language (you need to compile your model)
+2. insert your language block into ``` responses.js ``` 
+3. set your language in ``` index.js ``` ``` var lang = "en-US";``` 
 
 ## Commands examples ## 
 * To play song with title {title}
