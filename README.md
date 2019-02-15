@@ -7,6 +7,8 @@ Alexa_YouTube skill makes it easy to play music and playlist from YouTube.
 
 [![Alt text](https://img.youtube.com/vi/xr8Mt6yWTBg/0.jpg)](https://www.youtube.com/watch?v=xr8Mt6yWTBg)
 
+Click on the image above to watch the video.
+
 ## Features ##
 User ...
 * ... doesn't need a YouTube account to groove this skill
