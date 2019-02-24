@@ -55,4 +55,4 @@ The new release make it easy to expand any language you want without changing th
 
 ## Notes ##
 Please note that the aws ```/tmp/``` folder is a non-persistent scratch area. This means that your Playlists are only temporarily stored in it. To solve that, please use an other storage service or your own server storage.
-This repository is based off of an original [skill](https://github.com/dmhacker/alexa-youtube-skill)
+This repository is based off of this original [skill](https://github.com/dmhacker/alexa-youtube-skill)
